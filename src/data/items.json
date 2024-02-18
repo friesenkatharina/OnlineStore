@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "AllAboutLeafs",
+    "price": 59.9,
+    "imgUrl": "../assets/AllAboutLeafs.jpeg"
+  },
+  {
+    "id": 1,
+    "name": "FlowerRegal",
+    "price": 89.9,
+    "imgUrl": "../assets/FlowerRegal.jpeg"
+  },
+  {
+    "id": 1,
+    "name": "AllAboutLeafs",
+    "price": 59.9,
+    "imgUrl": "../assets/AllAboutLeafs.jpeg"
+  },
+  {
+    "id": 1,
+    "name": "AllAboutLeafs",
+    "price": 59.9,
+    "imgUrl": "../assets/AllAboutLeafs.jpeg"
+  }
+]
