@@ -5,7 +5,6 @@ import { Store } from "./pages/Store";
 import About from "./pages/About";
 import { Navbar } from "./Components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
-import React from "react";
 
 function App() {
   return (
