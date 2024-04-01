@@ -1,7 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
-import storeItems from "../data/items.json";
 import React from "react";
 
 type StoreItemProps = {
@@ -35,7 +34,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button className="w-100" onClick={() => increaseCartQuantity(id)}>
+            <Button className="w-40 " onClick={() => increaseCartQuantity(id)}>
               + Add To Cart
             </Button>
           ) : (
