@@ -1,5 +1,5 @@
 import React from "react";
-import SchilderImg from "../assets/Schilder.svg";
+import Login from "../Components/Login";
 
 function Home(): React.JSX.Element {
   return (
@@ -15,7 +15,7 @@ function Home(): React.JSX.Element {
                 <img
                   style={{ width: "100px", marginLeft: "100px" }}
                   className="h-1 w-auto"
-                  src={SchilderImg}
+                  // src={}
                   alt=""
                 />
               </a>
@@ -23,12 +23,7 @@ function Home(): React.JSX.Element {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Log in
-                  </a>
+                  <Login />
                 </div>
               </div>
             </div>
@@ -49,7 +44,10 @@ function Home(): React.JSX.Element {
             }}
           ></div>
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <div
+          style={{ marginTop: "200px" }}
+          className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56"
+        >
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20"></div>
           </div>

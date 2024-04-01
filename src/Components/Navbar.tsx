@@ -18,6 +18,9 @@ export function Navbar() {
           <Nav.Link style={{ color: "#a3e635" }} to="/about" as={NavLink}>
             About
           </Nav.Link>
+          <Nav.Link style={{ color: "#a3e635" }} to="/register" as={NavLink}>
+            Register
+          </Nav.Link>
         </Nav>
         {cartQuantity > 0 && (
           <Button
