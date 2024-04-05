@@ -5,9 +5,13 @@ import { Store } from "./pages/Store";
 import About from "./pages/About";
 import { Navbar } from "./Components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
-// import { Register } from "./Components/Register";
+import SignUp from "./Components/SignUp";
+import Account from "./Components/Account";
+import Login from "./Components/Login";
 
 function App() {
+  const isUserSignedIn = !!localStorage.getItem("token");
+
   return (
     <ShoppingCartProvider>
       <Navbar />
@@ -16,6 +20,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />
+          <Route path="/signup" element={<SignUp />} />
+          {isUserSignedIn && <Route path="/account" element={<Account />} />}
+          <Route path="/login" element={<Login />} />
           {/* <Route path="/register" element={<Register />} /> */}
         </Routes>
       </Container>

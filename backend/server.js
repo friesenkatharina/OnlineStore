@@ -11,17 +11,15 @@ const app = express(); // Hier rufen Sie express() auf, um eine Instanz zu erste
 app.use(cookieParser());
 app.use(express.json());
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "http://localhost/*",
-];
+const allowedOrigins = ["http://localhost:5173", "http://localhost:5005"];
 
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("origin:", origin);
     if (allowedOrigins.includes(origin) || !origin) {
-      callback(new Error("Not allowed by CORS"));
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"), false);
     }
   },
   credentials: true,
