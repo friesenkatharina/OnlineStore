@@ -1,40 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [users, setUsers] = useState([]);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = () => {
-    axios.get("http://localhost:3001/register").then((res) => {
-      console.log(res.data);
-    });
-  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
+      // Aktualisiere hier die URL entsprechend deinem Backend-Server
       const response = await axios.post("http://localhost:5005/login", {
-        username,
+        email, // Verwende `email` statt `username`
         password,
       });
+      // Nehme an, dass das Token im Antwortobjekt enthalten ist
       const token = response.data.token;
       alert("Login successful");
-      setUsername("");
-      setPassword("");
-      fetchUsers();
-      navigate("/account");
-      window.location.reload();
+
       localStorage.setItem("token", token);
+      navigate("/account"); // Leite nach erfolgreichem Login weiter
+      // window.location.reload(); // Diese Zeile ist möglicherweise nicht erforderlich, es sei denn, du möchtest die gesamte Seite neu laden
     } catch (error) {
-      console.log("Login Error", error);
+      // Zeige eine benutzerfreundlichere Fehlermeldung an
+      alert(error.response.data.error || "Ein Fehler ist aufgetreten");
     }
   };
 
@@ -45,15 +35,15 @@ function Login() {
           className="text-center border rounded-lg w-[600px] h-[400px] p-9"
           onSubmit={handleLogin}
         >
-          {/*Username Input */}
-          <label>Username</label>
+          {/* E-Mail Input */}
+          <label>Email</label>
           <br />
           <input
             className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2"
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email" // Ändere den Typ zu `email`, um die E-Mail-Validierung zu nutzen
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <br />
           <br />
@@ -79,7 +69,7 @@ function Login() {
         </form>
       </div>
       <div className="w-[50%] h-[100%] flex justify-center items-center bg-teal-800">
-        <h2 className="text-3xl text-white ">Login</h2>
+        <h2 className="text-3xl text-white">Login</h2>
       </div>
     </div>
   );

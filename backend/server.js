@@ -4,12 +4,14 @@ import "./config.js";
 import "./db.connect.js";
 import cookieParser from "cookie-parser";
 import process from "process";
+import usersRoutes from "./routes/usersRoutes.js";
 
 const port = process.env.PORT;
-const app = express(); // Hier rufen Sie express() auf, um eine Instanz zu erstellen
+const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(usersRoutes);
 
 const allowedOrigins = ["http://localhost:5173", "http://localhost:5005"];
 
