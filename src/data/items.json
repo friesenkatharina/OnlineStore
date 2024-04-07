@@ -21,7 +21,7 @@
     "id": 4,
     "name": "AllAboutLeafs",
     "price": 59.9,
-    "imgUrl": "src/assets/BlatMusterGreen.jpeg"
+    "imgUrl": "src/assets/WandbehangStar.jpeg"
   },
   {
     "id": 5,
@@ -33,6 +33,6 @@
     "id": 6,
     "name": "AllAboutLeafs",
     "price": 59.9,
-    "imgUrl": "src/assets/BlatGruen.jpeg"
+    "imgUrl": "src/assets/DreamWhite.jpeg"
   }
 ]

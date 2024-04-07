@@ -2,6 +2,7 @@ import { Button, Card } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import React from "react";
+import "../button.css";
 
 type StoreItemProps = {
   id: number;
@@ -17,6 +18,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
     decreaseCartQuantity,
     removeFromCart,
   } = useShoppingCart();
+
   const quantity = getItemQuantity(id);
 
   return (
@@ -24,8 +26,9 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
       <Card.Img
         variant="top"
         src={imgUrl}
-        height="200px"
-        style={{ objectFit: "cover" }}
+        width="400px"
+        height="400px"
+        style={{ objectFit: "contain" }}
       />
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
@@ -34,7 +37,10 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button className="w-40 " onClick={() => increaseCartQuantity(id)}>
+            <Button
+              className="w-40 btn-glow"
+              onClick={() => increaseCartQuantity(id)}
+            >
               + Add To Cart
             </Button>
           ) : (
@@ -46,14 +52,25 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                 className="d-flex align-items-center justify-content-center"
                 style={{ gap: ".5rem" }}
               >
-                <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+                <Button
+                  onClick={() => decreaseCartQuantity(id)}
+                  className="btn-glow"
+                >
+                  -
+                </Button>
                 <div>
                   <span className="fs-3">{quantity}</span> in cart
                 </div>
-                <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                <Button
+                  onClick={() => increaseCartQuantity(id)}
+                  className="btn-glow"
+                >
+                  +
+                </Button>
               </div>
               <Button
                 onClick={() => removeFromCart(id)}
+                className="btn-glow"
                 variant="danger"
                 size="sm"
               >
