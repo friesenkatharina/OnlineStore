@@ -2,6 +2,7 @@ import React from "react";
 import { Footer } from "../Components/Footer";
 import shopImage from "../assets/BlatGruen.jpeg";
 import headerImage from "../assets/FlowerRegal.jpeg";
+import "../index.css";
 
 function Home(): React.JSX.Element {
   return (

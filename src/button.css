@@ -1,3 +1,7 @@
+body {
+  background-color: black;
+}
+
 .btn-glow {
   background-color: rosybrown !important;
   border: transparent;
