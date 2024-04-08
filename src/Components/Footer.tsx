@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-export function Footer() {
+export default function Footer() {
   return (
     <footer className="bg-secondary text-light py-3 mt-auto">
       <Container>

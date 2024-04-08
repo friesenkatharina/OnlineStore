@@ -10,20 +10,17 @@ function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      // Aktualisiere hier die URL entsprechend deinem Backend-Server
-      const response = await axios.post("http://localhost:5005/login", {
-        email, // Verwende `email` statt `username`
+      const response = await axios.post("http://localhost:5000/login", {
+        email,
         password,
       });
-      // Nehme an, dass das Token im Antwortobjekt enthalten ist
+
       const token = response.data.token;
       alert("Login successful");
 
       localStorage.setItem("token", token);
-      navigate("/account"); // Leite nach erfolgreichem Login weiter
-      // window.location.reload(); // Diese Zeile ist möglicherweise nicht erforderlich, es sei denn, du möchtest die gesamte Seite neu laden
+      navigate("/account");
     } catch (error) {
-      // Zeige eine benutzerfreundlichere Fehlermeldung an
       alert(error.response.data.error || "Ein Fehler ist aufgetreten");
     }
   };
@@ -35,19 +32,18 @@ function Login() {
           className="text-center border rounded-lg w-[600px] h-[400px] p-9"
           onSubmit={handleLogin}
         >
-          {/* E-Mail Input */}
           <label>Email</label>
           <br />
           <input
             className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2"
-            type="email" // Ändere den Typ zu `email`, um die E-Mail-Validierung zu nutzen
+            type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <br />
           <br />
-          {/* Password Input */}
+
           <label>Password</label>
           <br />
           <input
@@ -59,7 +55,7 @@ function Login() {
           />
           <br />
           <br />
-          {/* Button */}
+
           <button
             className="w-[200px] h-[50px] border hover:bg-teal-900"
             type="submit"

@@ -6,27 +6,20 @@ import cookieParser from "cookie-parser";
 import process from "process";
 import usersRoutes from "./routes/usersRoutes.js";
 
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(usersRoutes);
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5005"];
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "http://localhost:5000"],
+    credentials: true,
+  })
+);
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log("origin:", origin);
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"), false);
-    }
-  },
-  credentials: true,
-};
-app.use(cors(corsOptions));
+app.use("/", usersRoutes);
 
 // Middleware to log the method and path of each request, and the body of POST requests
 app.use((req, res, next) => {

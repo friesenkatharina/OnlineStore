@@ -14,7 +14,7 @@ function SignUp() {
   }, []);
 
   const fetchUsers = () => {
-    axios.get("http://localhost:3001/register").then((res) => {
+    axios.get("http://localhost:5000/register").then((res) => {
       // console.log(res.data)
     });
   };
@@ -22,7 +22,7 @@ function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/register", { email, username, password })
+      .post("http://localhost:5000/register", { email, username, password })
       .then(() => {
         alert("Registration Successful");
         setEmail("");

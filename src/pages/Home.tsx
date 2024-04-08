@@ -1,7 +1,7 @@
 import React from "react";
-import { Footer } from "../Components/Footer";
-import shopImage from "../assets/BlatGruen.jpeg";
-import headerImage from "../assets/FlowerRegal.jpeg";
+
+// import shopImage from "../assets/BlatGruen.jpeg";
+// import headerImage from "../assets/FlowerRegal.jpeg";
 import "../index.css";
 
 function Home(): React.JSX.Element {
@@ -52,7 +52,7 @@ function Home(): React.JSX.Element {
           <source src={backgroundVideo} type="video/mp4" />
           Ihr Browser unterstützt kein Video.
         </video> */}
-
+        {/* 
         <img
           src={shopImage}
           alt="Shop"
@@ -62,19 +62,17 @@ function Home(): React.JSX.Element {
             height: "65vh",
             borderRadius: "50%",
           }}
-        />
-        <div style={{ position: "relative", left: "60%" }}>
+        /> */}
+        {/* <div style={{ position: "relative", left: "60%" }}>
           {" "}
           <img
             src={headerImage}
             alt="Shop"
             style={{ width: "50%", height: "105vh", borderRadius: "50%" }}
           />
-        </div>
+        </div> */}
       </header>
-      <div style={{ marginTop: "200px" }}>
-        <Footer />
-      </div>
+      <div style={{ marginTop: "200px" }}></div>
     </div>
   );
 }

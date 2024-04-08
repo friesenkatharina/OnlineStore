@@ -1,9 +1,7 @@
-import express from "express";
+// db.connect.js
 import mongoose from "mongoose";
 import "./config.js";
 import process from "process";
-
-const app = express();
 
 const dbURI = process.env.MONGODB_ATLAS_URI;
 
@@ -13,10 +11,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    const PORT = process.env.PORT || 5005;
-    app.listen(PORT, () => {
-      console.log(`Server connected to port ${PORT} and MongoDB`);
-    });
+    console.log("Connected to MongoDB");
 
     mongoose.connection.db
       .listCollections()
@@ -30,7 +25,3 @@ mongoose
   .catch((error) => {
     console.log("Unable to connect to MongoDB", error);
   });
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
