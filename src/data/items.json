@@ -3,36 +3,36 @@
     "id": 1,
     "name": "AllAboutLeafs",
     "price": 59.9,
-    "imgUrl": "src/assets/BlatMusterGreen.jpeg"
+    "imgUrl": "./src/assets/BlatMusterGreen.jpeg"
   },
   {
     "id": 2,
     "name": "FlowerRegal",
     "price": 89.9,
-    "imgUrl": "src/assets/FlowerRegal.jpeg"
+    "imgUrl": "./src/assets/FlowerRegal.jpeg"
   },
   {
     "id": 3,
     "name": "AllAboutLeafs",
     "price": 59.9,
-    "imgUrl": "src/assets/BluetenEleganz.jpeg"
+    "imgUrl": "./src/assets/BluetenEleganz.jpeg"
   },
   {
     "id": 4,
     "name": "AllAboutLeafs",
     "price": 59.9,
-    "imgUrl": "src/assets/WandbehangStar.jpeg"
+    "imgUrl": "./src/assets/WandbehangStar.jpeg"
   },
   {
     "id": 5,
     "name": "AllAboutLeafs",
     "price": 59.9,
-    "imgUrl": "src/assets/AllAboutLeafs.jpeg"
+    "imgUrl": "./src/assets/AllAboutLeafs.jpeg"
   },
   {
     "id": 6,
     "name": "AllAboutLeafs",
     "price": 59.9,
-    "imgUrl": "src/assets/DreamWhite.jpeg"
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
   }
 ]
