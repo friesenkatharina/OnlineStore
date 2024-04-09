@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Nav, Navbar as NavbarBs, Button } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useShoppingCart } from "../context/ShoppingCartContext";
@@ -11,10 +11,37 @@ export function Navbar() {
 
   // function for logout
   const handleSignOut = () => {
+    alert("Du wurdest ausgeloggt. (Timeout)");
     localStorage.removeItem("token");
     navigate("/login");
     window.location.reload();
   };
+
+  // timer for auto logout
+  useEffect(() => {
+    let timer: string | number | NodeJS.Timeout | undefined;
+    const handleActivity = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (isUserSignedIn) {
+          handleSignOut();
+        }
+      }, 1000000); // 1000000 milliseconds = 10 minutes
+    };
+    document.addEventListener("mousemove", handleActivity);
+    document.addEventListener("mousedown", handleActivity);
+    document.addEventListener("keypress", handleActivity);
+    document.addEventListener("touchmove", handleActivity);
+    document.addEventListener("scroll", handleActivity);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("mousemove", handleActivity);
+      document.removeEventListener("mousedown", handleActivity);
+      document.removeEventListener("keypress", handleActivity);
+      document.removeEventListener("touchmove", handleActivity);
+      document.removeEventListener("scroll", handleActivity);
+    };
+  }, [isUserSignedIn, handleSignOut]);
 
   return (
     <NavbarBs sticky="top" className="bg-secondary shadow-sm mb-3">
