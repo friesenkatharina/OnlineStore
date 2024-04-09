@@ -16,10 +16,10 @@ function Login() {
       });
 
       const token = response.data.token;
-      alert("Login successful");
+      alert("Login successful 🥳 🥳 🥳 🥳  ");
 
       localStorage.setItem("token", token);
-      navigate("/account");
+      navigate("/store");
     } catch (error) {
       alert(error.response.data.error || "Ein Fehler ist aufgetreten");
     }

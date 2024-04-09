@@ -8,7 +8,7 @@ import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import SignUp from "./Components/SignUp";
 // import Account from "./Components/Account";
 import Login from "./Components/Login";
-// import Footer from "./Components/Footer";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
   // const isUserSignedIn = !!localStorage.getItem("token");
@@ -19,12 +19,19 @@ function App() {
       <Container className="mb-4">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/store" element={<Store />} />
+          <Route
+            path="/store"
+            element={
+              <ProtectedRoute>
+                <Store />
+              </ProtectedRoute>
+            }
+          />
+          {/* <Route path="/store" element={<Store />} /> */}
           <Route path="/about" element={<About />} />
           <Route path="/signup" element={<SignUp />} />
           {/* {isUserSignedIn && <Route path="/account" element={<Account />} />} */}
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/footer" element={<Footer />} /> */}
           {/* <Route path="/register" element={<Register />} /> */}
         </Routes>
       </Container>

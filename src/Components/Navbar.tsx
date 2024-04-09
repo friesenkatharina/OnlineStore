@@ -9,7 +9,7 @@ export function Navbar() {
 
   const isUserSignedIn = !!localStorage.getItem("token");
 
-  // Funktion zum Abmelden
+  // function for logout
   const handleSignOut = () => {
     localStorage.removeItem("token");
     navigate("/login");
@@ -44,9 +44,9 @@ export function Navbar() {
             </>
           ) : (
             <>
-              <Nav.Link as={NavLink} to="/login" style={{ color: "#a3e635" }}>
+              {/* <Nav.Link as={NavLink} to="/login" style={{ color: "#a3e635" }}>
                 Login
-              </Nav.Link>
+              </Nav.Link> */}
               <Nav.Link as={NavLink} to="/signup" style={{ color: "#a3e635" }}>
                 Signup
               </Nav.Link>
