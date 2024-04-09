@@ -1,4 +1,4 @@
-const errorResponder = (err, req, res, next) => {
+const errorResponder = (err, req, res) => {
   res.status(err.status || 500);
   res.json({
     error: err,

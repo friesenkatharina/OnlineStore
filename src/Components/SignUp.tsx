@@ -11,24 +11,28 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      const response = await axios.post(
         "http://localhost:5000/register",
         {
           email,
-          name: username,
+          username,
           password,
         },
         {
           withCredentials: true,
         }
       );
-      alert("Registration Successful");
-      setEmail("");
-      setUsername("");
-      setPassword("");
+      // Assuming the registration is successful, navigate to the login page.
+      // Update this URL if your login route differs.
       navigate("/login");
+      console.log(response.data); // Optionally log the response data from the server
     } catch (error) {
-      console.error("Unable to register user", error);
+      // Log the error to the console or display an error message to the user
+      console.error(
+        "Registration error:",
+        error.response ? error.response.data : "Unknown error"
+      );
+      // Optionally, implement a state to display the error message on the UI
     }
   };
 
