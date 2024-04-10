@@ -2,14 +2,23 @@ import React from "react";
 import Footer from "../Components/Footer";
 import shopImage from "../assets/BlatGruen.jpeg";
 import headerImage from "../assets/FlowerRegal.jpeg";
+import StoreFront from "../Components/StoreFront";
 import "../index.css";
 
 function Home(): React.JSX.Element {
   return (
     <div
-      style={{ marginTop: "50px", border: "5px solid grey", padding: "20px" }}
+      style={{
+        marginTop: "50px",
+        border: "5px solid grey",
+        padding: "20px",
+        backgroundColor: "#14532d",
+      }}
       className="  home-container"
     >
+      <div>
+        <StoreFront />
+      </div>
       <div
         style={{
           marginTop: "50px",
@@ -25,7 +34,11 @@ function Home(): React.JSX.Element {
           Willkommen!
         </h1>
         <p
-          style={{ fontFamily: "revert-layer", textAlign: "center" }}
+          style={{
+            fontFamily: "revert-layer",
+            textAlign: "center",
+            color: "white",
+          }}
           className=" welcome-text"
         >
           Welcome to my soon-to-be-launched online shop!

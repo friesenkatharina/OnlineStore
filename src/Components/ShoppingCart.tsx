@@ -4,12 +4,14 @@ import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import storeItems from "../data/items.json";
 import React from "react";
+import { loadStripe } from "@stripe/stripe-js";
 
 type ShoppingCartProps = {
   isOpen: boolean;
 };
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
+  const stripePromise = loadStripe("PUBLIC_STRIPE_KEY");
   const { closeCart, cartItems } = useShoppingCart();
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">

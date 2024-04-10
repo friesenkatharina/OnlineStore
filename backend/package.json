@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.7.0",
+    "@stripe/stripe-js": "^3.3.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -19,7 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.0",
     "react-hot-toast": "^2.4.1",
-    "proxy": "http://localhost:5000"
+    "stripe": "^14.24.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
