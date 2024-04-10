@@ -44,7 +44,11 @@ export function Navbar() {
   }, [isUserSignedIn, handleSignOut]);
 
   return (
-    <NavbarBs sticky="top" className="bg-secondary shadow-sm mb-3">
+    <NavbarBs
+      sticky="top"
+      className="shadow-sm mb-3"
+      style={{ backgroundColor: "#14532d", opacity: "0.7" }}
+    >
       <Container>
         <Nav className="me-auto">
           <Nav.Link as={NavLink} to="/" style={{ color: "#a3e635" }}>
