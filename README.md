@@ -1,10 +1,17 @@
-## in this Project
+## in this Project OnlineStore
 
-- React
+Frontend
+
 - Vite
 - TypeScript
-- Bootstrap
+- Axios
 - Tailwind
-- Register and Login Form connected to Database
+- Bootstrap
 
-# OnlineStore
+Backend
+
+- React JS
+- Express
+- MongoDB
+- bcrypt
+- cors
