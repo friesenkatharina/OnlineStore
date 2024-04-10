@@ -26,7 +26,10 @@ function Login() {
   };
 
   return (
-    <div style={{ backgroundColor: "grey" }} className="w-full h-screen flex">
+    <div
+      style={{ width: "300px", backgroundColor: "grey" }}
+      className="w-full h-screen flex"
+    >
       <div className="w-[50%] h-[100%] bg-[#1a1a1a] text-white flex justify-center items-center">
         <form
           className="text-center border rounded-lg w-[600px] h-[400px] p-9"

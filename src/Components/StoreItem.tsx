@@ -22,16 +22,20 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const quantity = getItemQuantity(id);
 
   return (
-    <Card className="h-100" style={{ backgroundColor: "grey" }}>
+    <Card style={{ width: "450px" }}>
       <Card.Img
         variant="top"
         src={imgUrl}
-        width="400px"
+        width="350px"
         height="400px"
-        style={{ objectFit: "contain" }}
+        style={{
+          objectFit: "contain",
+          padding: "20px",
+          border: "2px solid green",
+        }}
       />
       <Card.Body className="d-flex flex-column">
-        <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
+        <Card.Title className="d-flex justify-content-between align-items-baseline mb-2">
           <span className="fs-2">{name}</span>
           <span className="ms-2 text-muted">{formatCurrency(price)}</span>
         </Card.Title>

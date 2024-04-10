@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "AllAboutLeafs",
+    "name": "BlatMusterGreen",
     "price": 59.9,
     "imgUrl": "./src/assets/BlatMusterGreen.jpeg"
   },
@@ -13,13 +13,13 @@
   },
   {
     "id": 3,
-    "name": "AllAboutLeafs",
+    "name": "BluetenEleganz",
     "price": 59.9,
     "imgUrl": "./src/assets/BluetenEleganz.jpeg"
   },
   {
     "id": 4,
-    "name": "AllAboutLeafs",
+    "name": "WandbehangStar",
     "price": 59.9,
     "imgUrl": "./src/assets/WandbehangStar.jpeg"
   },
@@ -31,8 +31,152 @@
   },
   {
     "id": 6,
+    "name": "sparkleNight",
+    "price": 59.9,
+    "imgUrl": "./src/assets/sparkleNight.JPEG"
+  },
+  {
+    "id": 7,
+    "name": "DreamWhite",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 8,
+    "name": "weddingMakra",
+    "price": 59.9,
+    "imgUrl": "./src/assets/weddingMakra.jpeg"
+  },
+  {
+    "id": 9,
+    "name": "DreamWhite",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 10,
+    "name": "roseWhite",
+    "price": 59.9,
+    "imgUrl": "./src/assets/roseWhite.jpeg"
+  },
+  {
+    "id": 11,
+    "name": "sparkleNight",
+    "price": 59.9,
+    "imgUrl": "./src/assets/sparkleNight.JPEG"
+  },
+  {
+    "id": 12,
+    "name": "weddingMakra",
+    "price": 59.9,
+    "imgUrl": "./src/assets/weddingMakra.jpeg"
+  },
+  {
+    "id": 13,
+    "name": "DreamWhite",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 14,
+    "name": "AllAboutLeafs",
+    "price": 59.9,
+    "imgUrl": "./src/assets/AllAboutLeafs.jpeg"
+  },
+  {
+    "id": 15,
+    "name": "weddingMakra",
+    "price": 59.9,
+    "imgUrl": "./src/assets/weddingMakra.jpeg"
+  },
+  {
+    "id": 16,
+    "name": "DreamWhite",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 17,
+    "name": "BlatMusterGreen",
+    "price": 59.9,
+    "imgUrl": "./src/assets/BlatMusterGreen.jpeg"
+  },
+  {
+    "id": 18,
     "name": "AllAboutLeafs",
     "price": 59.9,
     "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 19,
+    "name": "FlowerRegal",
+    "price": 59.9,
+    "imgUrl": "./src/assets/FlowerRegal.jpeg"
+  },
+  {
+    "id": 20,
+    "name": "AllAboutLeafs",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 21,
+    "name": "AllAboutLeafs",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 22,
+    "name": "AllAboutLeafs",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 23,
+    "name": "weddingMakra",
+    "price": 59.9,
+    "imgUrl": "./src/assets/weddingMakra.jpeg"
+  },
+  {
+    "id": 24,
+    "name": "DreamWhite",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 25,
+    "name": "BlatMusterGreen",
+    "price": 59.9,
+    "imgUrl": "./src/assets/BlatMusterGreen.jpeg"
+  },
+  {
+    "id": 26,
+    "name": "DreamWhite",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 27,
+    "name": "weddingMakra",
+    "price": 59.9,
+    "imgUrl": "./src/assets/weddingMakra.jpeg"
+  },
+  {
+    "id": 28,
+    "name": "FlowerRegal",
+    "price": 59.9,
+    "imgUrl": "./src/assets/FlowerRegal.jpeg"
+  },
+  {
+    "id": 29,
+    "name": "AllAboutLeafs",
+    "price": 59.9,
+    "imgUrl": "./src/assets/DreamWhite.jpeg"
+  },
+  {
+    "id": 30,
+    "name": "weddingMakra",
+    "price": 59.9,
+    "imgUrl": "./src/assets/weddingMakra.jpeg"
   }
 ]
