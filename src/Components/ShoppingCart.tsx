@@ -1,18 +1,23 @@
-import { Offcanvas, Stack } from "react-bootstrap";
+import { Offcanvas, Stack, Button } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
+import React, { useNavigate } from "react-router-dom";
 import storeItems from "../data/items.json";
-import React from "react";
-import { loadStripe } from "@stripe/stripe-js";
 
 type ShoppingCartProps = {
   isOpen: boolean;
 };
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
-  const stripePromise = loadStripe("PUBLIC_STRIPE_KEY");
   const { closeCart, cartItems } = useShoppingCart();
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate("/payment");
+    closeCart();
+  };
+
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
       <Offcanvas.Header closeButton>
@@ -33,6 +38,9 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             )}
           </div>
         </Stack>
+        <Button onClick={handleCheckout} variant="primary">
+          Checkout
+        </Button>
       </Offcanvas.Body>
     </Offcanvas>
   );
