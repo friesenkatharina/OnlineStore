@@ -1,8 +1,5 @@
-// import express from "express";
 import { User } from "../models/usersModel.js";
 import bcrypt from "bcrypt";
-
-// const router = express.Router();
 
 export const register = async (req, res) => {
   try {

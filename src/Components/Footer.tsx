@@ -4,7 +4,10 @@ import { NavLink } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-light py-3 mt-auto">
+    <footer
+      className="text-light py-3 mt-auto"
+      style={{ backgroundColor: "#14532d", opacity: "0.7" }}
+    >
       <Container>
         <Row>
           <Col className="text-center text-md-left mb-3 mb-md-0">

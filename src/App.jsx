@@ -9,6 +9,7 @@ import SignUp from "./Components/SignUp";
 // import Account from "./Components/Account";
 import Login from "./Components/Login";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import { Payment } from "./Components/Payment";
 
 function App() {
   // const isUserSignedIn = !!localStorage.getItem("token");
@@ -32,6 +33,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           {/* {isUserSignedIn && <Route path="/account" element={<Account />} />} */}
           <Route path="/login" element={<Login />} />
+          <Route path="/payment" element={<Payment />} />
           {/* <Route path="/register" element={<Register />} /> */}
         </Routes>
       </Container>

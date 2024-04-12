@@ -5,6 +5,7 @@ import "./db.connect.js";
 import cookieParser from "cookie-parser";
 import process from "process";
 import usersRoutes from "./routes/usersRoutes.js";
+import shippingRoutes from "./routes/shipping.js";
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -12,7 +13,11 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost/*"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://online-store-two-plum.vercel.app",
+  "http://localhost/*",
+];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -29,6 +34,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/", usersRoutes);
+
+app.use("/shipping", shippingRoutes);
 
 // Middleware to log the method and path of each request, and the body of POST requests
 app.use((req, res, next) => {

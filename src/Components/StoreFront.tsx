@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { CartSearchField } from "./CartSearchField";
 import { StoreItem } from "./StoreItem";
-import items from "../data/items.json"; // Stelle sicher, dass der Pfad korrekt ist
+import items from "../data/items.json";
 
 const StoreFront = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter nur, wenn searchTerm nicht leer ist
   const filteredItems =
     searchTerm.trim() !== ""
       ? items.filter((item) =>
@@ -28,8 +27,7 @@ const StoreFront = () => {
                 imgUrl={item.imgUrl}
               />
             ))
-          : // Optional: Anzeige einer Nachricht, wenn keine Artikel gefunden werden
-            searchTerm.trim() !== "" && <div>Keine Artikel gefunden.</div>}
+          : searchTerm.trim() !== "" && <div>Keine Artikel gefunden.</div>}
       </div>
     </div>
   );

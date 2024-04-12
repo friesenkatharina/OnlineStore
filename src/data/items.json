@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "BlatMusterGreen",
-    "price": 59.9,
+    "price": 19.9,
     "imgUrl": "./src/assets/BlatMusterGreen.jpeg"
   },
   {
@@ -146,7 +146,7 @@
   {
     "id": 25,
     "name": "BlatMusterGreen",
-    "price": 59.9,
+    "price": 19.9,
     "imgUrl": "./src/assets/BlatMusterGreen.jpeg"
   },
   {
@@ -164,7 +164,7 @@
   {
     "id": 28,
     "name": "FlowerRegal",
-    "price": 59.9,
+    "price": 89.9,
     "imgUrl": "./src/assets/FlowerRegal.jpeg"
   },
   {
