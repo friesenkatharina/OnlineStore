@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Button, Form } from "react-bootstrap";
+import axios from "axios";
 
 interface ShippingData {
   fullName: string;
@@ -23,9 +24,29 @@ export const Payment = () => {
     setShippingData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    console.log(shippingData);
+
+    const authToken = sessionStorage.getItem("token");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/shipping",
+        shippingData,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(
+        "Es gab einen Fehler beim Senden der Daten: ",
+        error.response
+      );
+    }
   };
 
   return (

@@ -9,7 +9,7 @@ export function Navbar() {
 
   const isUserSignedIn = !!localStorage.getItem("token");
 
-  // function for logout
+  // Function for logout
   const handleSignOut = () => {
     alert("Du wurdest ausgeloggt. (Timeout)");
     localStorage.removeItem("token");
@@ -17,22 +17,23 @@ export function Navbar() {
     window.location.reload();
   };
 
-  // timer for auto logout
+  // Timer for auto logout
   useEffect(() => {
-    let timer: string | number | NodeJS.Timeout | undefined;
+    let timer;
     const handleActivity = () => {
       clearTimeout(timer);
       timer = setTimeout(() => {
         if (isUserSignedIn) {
           handleSignOut();
         }
-      }, 1000000); // 1000000 milliseconds = 10 minutes
+      }, 1000000); // 1000000 milliseconds = 16 minutes and 40 seconds
     };
     document.addEventListener("mousemove", handleActivity);
     document.addEventListener("mousedown", handleActivity);
     document.addEventListener("keypress", handleActivity);
     document.addEventListener("touchmove", handleActivity);
     document.addEventListener("scroll", handleActivity);
+
     return () => {
       clearTimeout(timer);
       document.removeEventListener("mousemove", handleActivity);
@@ -47,7 +48,7 @@ export function Navbar() {
     <NavbarBs
       sticky="top"
       className="shadow-sm mb-3"
-      style={{ backgroundColor: "#14532d", opacity: "0.7" }}
+      style={{ backgroundColor: "#14532d", opacity: "0.9" }} // Slight change for better visibility on various backgrounds
     >
       <Container>
         <Nav className="me-auto">
@@ -66,28 +67,23 @@ export function Navbar() {
                 Account
               </Nav.Link>
               <Button
-                variant="outline-primary"
+                variant="outline-success" // Changed for a bit more visibility
                 onClick={handleSignOut}
-                style={{ marginLeft: "0.5rem" }}
+                style={{ marginLeft: "0.5rem", color: "#a3e635" }}
               >
                 Sign Out
               </Button>
             </>
           ) : (
-            <>
-              {/* <Nav.Link as={NavLink} to="/login" style={{ color: "#a3e635" }}>
-                Login
-              </Nav.Link> */}
-              <Nav.Link as={NavLink} to="/signup" style={{ color: "#a3e635" }}>
-                Signup
-              </Nav.Link>
-            </>
+            <Nav.Link as={NavLink} to="/signup" style={{ color: "#a3e635" }}>
+              Signup
+            </Nav.Link>
           )}
         </Nav>
         {cartQuantity > 0 && (
           <Button
             onClick={openCart}
-            variant="outline-primary"
+            variant="outline-success" // Consistency in button style
             style={{ position: "relative", width: "3rem", height: "3rem" }}
             className="rounded-circle"
           >

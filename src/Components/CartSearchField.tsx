@@ -12,7 +12,7 @@ export const CartSearchField = ({
   return (
     <InputGroup className="mb-3">
       <FormControl
-        placeholder="Artikel suchen..."
+        placeholder="Artikel suchen alphabetisch..."
         onChange={(e) => onSearchTermChange(e.target.value)}
       />
     </InputGroup>

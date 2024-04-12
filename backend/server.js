@@ -5,6 +5,7 @@ import "./db.connect.js";
 import cookieParser from "cookie-parser";
 import process from "process";
 import usersRoutes from "./routes/usersRoutes.js";
+import shippingRoutes from "./routes/shipping.js";
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -33,6 +34,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/", usersRoutes);
+
+app.use("/shipping", shippingRoutes);
 
 // Middleware to log the method and path of each request, and the body of POST requests
 app.use((req, res, next) => {

@@ -15,3 +15,5 @@ Backend
 - MongoDB
 - bcrypt
 - cors
+
+Payment component in React collects shipping data from users and sends it to an Express backend
