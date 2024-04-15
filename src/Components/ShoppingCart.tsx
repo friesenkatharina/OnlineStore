@@ -5,6 +5,7 @@ import { CartItem } from "./CartItem";
 import React, { useNavigate } from "react-router-dom";
 import storeItems from "../data/items.json";
 import { useMemo } from "react";
+
 type ShoppingCartProps = {
   isOpen: boolean;
 };
@@ -21,7 +22,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   }, [cartItems]);
 
   const handleCheckout = () => {
-    navigate("/payment");
+    navigate("/checkoutform");
     closeCart();
   };
 

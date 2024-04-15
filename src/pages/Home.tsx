@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../Components/Footer";
 import shopImage from "../assets/BlatGruen.jpeg";
 import headerImage from "../assets/FlowerRegal.jpeg";
-import StoreFront from "../Components/StoreFront";
+
 import "../index.css";
 
 function Home(): React.JSX.Element {
@@ -16,9 +16,6 @@ function Home(): React.JSX.Element {
       }}
       className="  home-container"
     >
-      <div>
-        <StoreFront />
-      </div>
       <div
         style={{
           marginTop: "50px",

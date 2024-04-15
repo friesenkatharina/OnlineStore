@@ -80,7 +80,7 @@ export function Navbar() {
             </Nav.Link>
           )}
         </Nav>
-        {cartQuantity > 0 && (
+        {isUserSignedIn && cartQuantity > 0 && (
           <Button
             onClick={openCart}
             variant="outline-success" // Consistency in button style
