@@ -1,10 +1,10 @@
 .btn-glow {
-  background-color: rosybrown !important;
+  background-color: #14532d !important;
   border: transparent;
 }
 
 .btn-glow:hover {
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
-    0 0 18px rgba(230, 157, 157, 0.898), 0 0 25px rgb(219, 118, 118);
+    0 0 18px rgba(230, 157, 157, 0.898), 0 0 25px #14532d;
   transition: box-shadow 0.3s ease-in-out;
 }

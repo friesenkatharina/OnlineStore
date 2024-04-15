@@ -48,7 +48,7 @@ export function Navbar() {
     <NavbarBs
       sticky="top"
       className="shadow-sm mb-3"
-      style={{ backgroundColor: "#14532d", opacity: "0.9" }} // Slight change for better visibility on various backgrounds
+      style={{ backgroundColor: "#14532d", opacity: "0.9" }}
     >
       <Container>
         <Nav className="me-auto">
@@ -67,7 +67,7 @@ export function Navbar() {
                 Account
               </Nav.Link>
               <Button
-                variant="outline-success" // Changed for a bit more visibility
+                variant="outline-success"
                 onClick={handleSignOut}
                 style={{ marginLeft: "0.5rem", color: "#a3e635" }}
               >

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CartSearchField } from "./CartSearchField";
-import { StoreItem } from "./StoreItem";
+import { StoreItem } from "../Components/StoreItem";
 import items from "../data/items.json";
 
 const StoreFront = () => {

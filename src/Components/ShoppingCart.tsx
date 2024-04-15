@@ -4,7 +4,7 @@ import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import React, { useNavigate } from "react-router-dom";
 import storeItems from "../data/items.json";
-
+import { useMemo } from "react";
 type ShoppingCartProps = {
   isOpen: boolean;
 };
@@ -12,6 +12,13 @@ type ShoppingCartProps = {
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems } = useShoppingCart();
   const navigate = useNavigate();
+
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce((total, cartItem) => {
+      const item = storeItems.find((i) => i.id === cartItem.id);
+      return total + (item?.price || 0) * cartItem.quantity;
+    }, 0);
+  }, [cartItems]);
 
   const handleCheckout = () => {
     navigate("/payment");

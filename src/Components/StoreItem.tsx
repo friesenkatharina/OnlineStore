@@ -22,7 +22,18 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const quantity = getItemQuantity(id);
 
   return (
-    <Card className="card-custom">
+    <Card
+      className="card-custom"
+      style={{ backgroundColor: "#d9f99d", padding: "20px" }}
+    >
+      {/* {user.isLoggedIn && (
+        <div className="fs-3 mb-2">Welcome, {user.username}</div>
+      )} */}
+      <Card.Title className="d-flex justify-content-between align-items-baseline mb-2">
+        <span style={{ color: "#022c22", padding: "50px" }} className="fs-2">
+          {name}
+        </span>
+      </Card.Title>
       <Card.Img
         variant="top"
         src={imgUrl}
@@ -36,14 +47,17 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
       />
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-2">
-          <span className="fs-2">{name}</span>
+          <span style={{ color: "#422006" }} className="fs-2">
+            {name}
+          </span>
           <span className="ms-2 text-muted">{formatCurrency(price)}</span>
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
             <Button
-              className="w-40 btn-glow"
+              className=" btn-glow"
               onClick={() => increaseCartQuantity(id)}
+              style={{ marginLeft: "350px" }}
             >
               + Add To Cart
             </Button>
@@ -59,6 +73,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                 <Button
                   onClick={() => decreaseCartQuantity(id)}
                   className="btn-glow"
+                  style={{ marginLeft: "350px" }}
                 >
                   -
                 </Button>

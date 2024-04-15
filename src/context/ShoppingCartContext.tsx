@@ -12,6 +12,11 @@ type CartItem = {
   quantity: number;
 };
 
+type User = {
+  isLoggedIn: boolean;
+  username: string;
+};
+
 type ShoppingCartContext = {
   openCart: () => void;
   closeCart: () => void;
@@ -21,6 +26,8 @@ type ShoppingCartContext = {
   removeFromCart: (id: number) => void;
   cartQuantity: number;
   cartItems: CartItem[];
+  user: User;
+  setUser: (user: User) => void;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -28,12 +35,18 @@ const ShoppingCartContext = createContext({} as ShoppingCartContext);
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);
 }
+
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
     "shopping-cart",
     []
   );
+
+  const [user, setUser] = useLocalStorage<User>("user-info", {
+    isLoggedIn: false,
+    username: "",
+  });
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -42,9 +55,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+
   function getItemQuantity(id: number) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
+
   function increaseCartQuantity(id: number) {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
@@ -60,6 +75,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       }
     });
   }
+
   function decreaseCartQuantity(id: number) {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id)?.quantity === 1) {
@@ -75,6 +91,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       }
     });
   }
+
   function removeFromCart(id: number) {
     setCartItems((currItems) => {
       return currItems.filter((item) => item.id !== id);
@@ -92,6 +109,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         closeCart,
         cartItems,
         cartQuantity,
+        user,
+        setUser,
       }}
     >
       {children}

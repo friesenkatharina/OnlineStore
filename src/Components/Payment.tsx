@@ -28,6 +28,11 @@ export const Payment = () => {
     event.preventDefault();
 
     const authToken = sessionStorage.getItem("token");
+    console.log("Auth Token:", authToken);
+
+    if (!authToken) {
+      console.error("No auth token available. User might not be logged in.");
+    }
 
     try {
       const response = await axios.post(
@@ -42,16 +47,26 @@ export const Payment = () => {
       );
       console.log(response.data);
     } catch (error) {
-      console.error(
-        "Es gab einen Fehler beim Senden der Daten: ",
-        error.response
-      );
+      if (error.response && error.response.status === 403) {
+        console.error(
+          "Access Denied: You do not have permission to perform this action."
+        );
+      } else {
+        console.error("Error sending data:", error.response);
+      }
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formFullName">
+    <Form
+      onSubmit={handleSubmit}
+      style={{ background: "#166534", width: "600px" }}
+    >
+      <Form.Group
+        className="mb-3"
+        controlId="formFullName"
+        style={{ padding: "20px" }}
+      >
         <Form.Label>Vollständiger Name</Form.Label>
         <Form.Control
           type="text"
@@ -62,7 +77,11 @@ export const Payment = () => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formAddress">
+      <Form.Group
+        className="mb-3"
+        controlId="formAddress"
+        style={{ padding: "20px" }}
+      >
         <Form.Label>Adresse</Form.Label>
         <Form.Control
           type="text"
@@ -73,7 +92,11 @@ export const Payment = () => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formCity">
+      <Form.Group
+        className="mb-3"
+        controlId="formCity"
+        style={{ padding: "20px" }}
+      >
         <Form.Label>Stadt</Form.Label>
         <Form.Control
           type="text"
@@ -84,7 +107,11 @@ export const Payment = () => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formZipCode">
+      <Form.Group
+        className="mb-3"
+        controlId="formZipCode"
+        style={{ padding: "20px" }}
+      >
         <Form.Label>Postleitzahl</Form.Label>
         <Form.Control
           type="text"
@@ -95,7 +122,11 @@ export const Payment = () => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formCountry">
+      <Form.Group
+        className="mb-3"
+        controlId="formCountry"
+        style={{ padding: "20px" }}
+      >
         <Form.Label>Land</Form.Label>
         <Form.Control
           type="text"
@@ -106,8 +137,8 @@ export const Payment = () => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Weiter
+      <Button variant="primary" type="submit" style={{ margin: "50px" }}>
+        Weiter 🖖
       </Button>
     </Form>
   );

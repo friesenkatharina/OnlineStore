@@ -10,8 +10,9 @@ export const CartSearchField = ({
   onSearchTermChange,
 }: CartSearchFieldProps) => {
   return (
-    <InputGroup className="mb-3">
+    <InputGroup className="mb-3" style={{ width: "150px" }}>
       <FormControl
+        style={{ width: "200px" }}
         placeholder="Artikel suchen alphabetisch..."
         onChange={(e) => onSearchTermChange(e.target.value)}
       />
