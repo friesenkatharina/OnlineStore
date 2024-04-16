@@ -5,10 +5,12 @@ import ShippingInfo from "../models/ShippingInfo.js";
 const router = express.Router();
 
 router.post("/", authenticateToken, async (req, res) => {
-  try {
-    const { fullName, address, city, zipCode, country } = req.body;
+  console.log(req.body);
 
-    if (!fullName || !address || !city || !zipCode || !country) {
+  try {
+    const { fullName, address, city, zip, country } = req.body;
+
+    if (!fullName || !address || !city || !zip || !country) {
       return res.status(400).json({ message: "All fields are required." });
     }
 
@@ -16,7 +18,7 @@ router.post("/", authenticateToken, async (req, res) => {
       fullName,
       address,
       city,
-      zipCode,
+      zip,
       country,
     });
 
