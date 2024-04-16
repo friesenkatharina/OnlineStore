@@ -3,8 +3,10 @@
 const Payment = () => {
   return (
     <div>
-      <h1>Payment Page</h1>
-      <p>Welcome to the payment page. Please proceed with your transaction.</p>
+      <h1 style={{ color: "green" }}>Payment Page</h1>
+      <p style={{ color: "lighblue" }}>
+        Welcome to the payment page. Please proceed with your transaction.
+      </p>
     </div>
   );
 };

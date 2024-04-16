@@ -34,54 +34,67 @@ function SignUp() {
   };
 
   return (
-    <div className="w-full h-screen flex" style={{ backgroundColor: "grey" }}>
-      <div className="w-1/2 h-full bg-[#1a1a1a] text-white flex justify-center items-center">
-        <form
-          className="text-center border rounded-lg w-[600px] h-[400px] p-9"
-          onSubmit={handleSubmit}
-        >
-          <div className="mb-4">
-            <label>Email</label>
-            <input
-              className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label>Username</label>
-            <input
-              className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label>Password</label>
-            <input
-              className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            className="w-[200px] h-[50px] border hover:bg-teal-900"
-            type="submit"
+    <>
+      <h3 style={{ color: "green", marginTop: "50px" }}>
+        Log in to access your account and online store. Don't forget to check
+        out our latest arrivals and special offers just for you. 😃
+      </h3>
+      <div
+        style={{
+          backgroundColor: "grey",
+          width: "600px",
+          marginTop: "50px",
+          marginLeft: "250px",
+        }}
+      >
+        <div className="w-1/2 h-full bg-[#1a1a1a] text-white flex justify-center items-center">
+          <form
+            className="text-center border rounded-lg w-[600px] h-[400px] p-9"
+            onSubmit={handleSubmit}
           >
-            Sign Up
-          </button>
-        </form>
+            <div className="mb-4">
+              <label>Email</label>
+              <input
+                className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="mb-4">
+              <label>Username</label>
+              <input
+                className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="mb-4">
+              <label>Password</label>
+              <input
+                className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button
+              className="w-[200px] h-[50px] border hover:bg-teal-900"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
+        <div className="w-1/2 h-full flex justify-center items-center bg-teal-800">
+          <h2 className="text-3xl text-white">Sign Up</h2>
+        </div>
       </div>
-      <div className="w-1/2 h-full flex justify-center items-center bg-teal-800">
-        <h2 className="text-3xl text-white">Sign Up</h2>
-      </div>
-    </div>
+    </>
   );
 }
 
