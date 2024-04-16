@@ -36,8 +36,7 @@ function SignUp() {
   return (
     <>
       <h3 style={{ color: "green", marginTop: "50px" }}>
-        Log in to access your account and online store. Don't forget to check
-        out our latest arrivals and special offers just for you. 😃
+        signUp to access your account to online store. 😃
       </h3>
       <div
         style={{
