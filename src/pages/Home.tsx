@@ -2,89 +2,80 @@ import React from "react";
 import Footer from "../Components/Footer";
 import shopImage from "../assets/BlatGruen.jpeg";
 import headerImage from "../assets/FlowerRegal.jpeg";
-
-import "../index.css";
+import Slider from "../Components/Slider";
+import ImageModal from "../Components/ImageModal";
+import "../styles/index.css";
 
 function Home(): React.JSX.Element {
   return (
-    <div
-      style={{
-        marginTop: "50px",
-        border: "5px solid grey",
-        padding: "20px",
-        backgroundColor: "#14532d",
-      }}
-      className="  home-container"
-    >
+    <>
+      <Slider />
+      <div>
+        <h1
+          style={{
+            fontFamily: "monospace",
+            textAlign: "center",
+            marginTop: "50px",
+          }}
+        >
+          Welcome to online shop!
+        </h1>
+      </div>
       <div
         style={{
-          marginTop: "50px",
+          marginTop: "250px",
           border: "5px solid grey",
           padding: "20px",
+          backgroundColor: "#14532d",
         }}
-        className=" welcome-section"
+        className="  home-container"
       >
-        <h1
-          style={{ fontFamily: "monospace", textAlign: "center" }}
-          className=" welcome-title"
-        >
-          Willkommen!
-        </h1>
-        <p
-          style={{
-            fontFamily: "revert-layer",
-            textAlign: "center",
-            color: "white",
-          }}
-          className=" welcome-text"
-        >
-          Welcome to my soon-to-be-launched online shop!
-          <br />
-          I am in the process of crafting a unique and immersive shopping
-          experience just for you.
-          <br />
-          At my shop, you'll discover a curated selection of high-quality
-          Makramee Decoration products
-          <br />
-          designed to enhance your lifestyle and bring joy to your everyday
-          moments.
-        </p>
-      </div>
-      <header className=" shop-header">
-        <img
-          className="shop-image"
-          src={shopImage}
-          alt="Shop"
-          style={{
-            marginTop: "100px",
-            marginLeft: "50px",
-            width: "30%",
-            height: "65vh",
-            border: "5px solid green",
-            borderRadius: "50%",
-          }}
-        />
         <div
-          className="header-image-container"
-          style={{ position: "relative", left: "60%" }}
+          style={{
+            marginTop: "50px",
+            border: "5px solid grey",
+            padding: "20px",
+          }}
+          className=" welcome-section"
         >
-          {" "}
-          <img
-            className="header-image"
-            src={headerImage}
-            alt="Shop"
+          <p
             style={{
-              width: "30%",
-              height: "55vh",
-              border: "5px solid green",
-              borderRadius: "50%",
+              fontFamily: "revert-layer",
+              textAlign: "center",
+              color: "white",
             }}
-          />
+            className=" welcome-text"
+          >
+            <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+            earum!
+            <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+            earum!
+            <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+            earum!
+          </p>
         </div>
-      </header>
-      <div className="space-below" style={{ marginTop: "200px" }}></div>
-      <Footer />
-    </div>
+        <header className=" shop-header">
+          <div style={{ marginTop: "100px", marginLeft: "50px" }}>
+            {" "}
+            <ImageModal src={shopImage} alt="Shop" />
+          </div>
+
+          <div
+            className="header-image-container"
+            style={{ position: "relative", left: "60%" }}
+          >
+            {" "}
+            <ImageModal src={headerImage} alt="Shop" />
+          </div>
+        </header>
+        <div>{/* <Slider /> */}</div>
+        <div className="space-below" style={{ marginTop: "200px" }}></div>
+        <Footer />
+      </div>
+    </>
   );
 }
 

@@ -7,7 +7,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (event) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const response = await axios.post("http://localhost:5000/login", {
@@ -15,50 +15,52 @@ function Login() {
         password,
       });
 
-      const token = response.data.token;
+      const { token, userName } = response.data;
       alert("Login successful 🥳 🥳 🥳 🥳  ");
 
       localStorage.setItem("token", token);
+      if (userName) {
+        localStorage.setItem("userName", userName);
+      }
+
       navigate("/store");
     } catch (error) {
-      alert(error.response.data.error || "Ein Fehler ist aufgetreten");
+      alert("error");
     }
   };
 
   return (
     <div
-      style={{ width: "300px", backgroundColor: "grey" }}
+      style={{ width: "300px", backgroundColor: "grey", marginTop: "50px" }}
       className="w-full h-screen flex"
     >
       <div className="w-[50%] h-[100%] bg-[#1a1a1a] text-white flex justify-center items-center">
+        <p></p>
+
         <form
           className="text-center border rounded-lg w-[600px] h-[400px] p-9"
           onSubmit={handleLogin}
         >
-          <label>Email</label>
-          <br />
-          <input
-            className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <br />
-          <br />
-
-          <label>Password</label>
-          <br />
-          <input
-            className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br />
-          <br />
-
+          <div className="mb-4">
+            <label>Email</label>
+            <input
+              className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label>Password</label>
+            <input
+              className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
           <button
             className="w-[200px] h-[50px] border hover:bg-teal-900"
             type="submit"

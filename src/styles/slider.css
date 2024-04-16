@@ -1,0 +1,10 @@
+.slider-container {
+  max-width: 800px; /* or 100% for full width */
+  margin: 20px auto;
+}
+
+.slide-image {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the slide area */
+}

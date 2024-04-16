@@ -1,217 +1,138 @@
-import React, { useState, useEffect } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+//  Formular zur Eingabe von Versandinformationen bereitstellt.
+
+import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Image from "../assets/shopping-cart.svg";
 
-const CheckoutForm = () => {
-  const [clientSecret, setClientSecret] = useState("");
-  const [billingDetails, setBillingDetails] = useState({
-    fullName: "",
-    address: "",
-    city: "",
-    zip: "",
-    country: "",
-  });
-  const [errors, setErrors] = useState({
-    cardError: "",
-    formError: "",
-  });
+function CheckoutForm() {
+  const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [zip, setZip] = useState("");
+  const [country, setCountry] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const stripe = useStripe();
-  const elements = useElements();
-  const authToken = sessionStorage.getItem("token");
-
-  useEffect(() => {
-    const fetchClientSecret = async () => {
-      try {
-        const response = await fetch("/create-payment-intent", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ amount: 1000 }), // Betrag sollte entsprechend Ihrer Logik angepasst werden
-        });
-        const data = await response.json();
-        setClientSecret(data.clientSecret);
-      } catch (error) {
-        console.error("Error fetching client secret:", error);
-      }
-    };
-
-    fetchClientSecret();
-  }, []);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setBillingDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { fullName, address, city, zip, country } = billingDetails;
     if (!fullName || !address || !city || !zip || !country) {
-      setErrors({ ...errors, formError: "All fields must be filled out." });
-      return;
-    }
-
-    if (!stripe || !elements) {
-      setErrors((errors) => ({
-        ...errors,
-        formError: "Stripe not loaded correctly.",
-      }));
-      return;
-    }
-
-    const card = elements.getElement(CardElement);
-    if (!card) {
-      setErrors((errors) => ({
-        ...errors,
-        cardError: "Incomplete card information.",
-      }));
+      setError("All fields must be filled out.");
       return;
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/shipping",
-        { fullName, address, city, zip, country },
-        { headers: { Authorization: `Bearer ${authToken}` } }
-      );
-      console.log("Shipping Info Saved:", response.data);
-
-      // Versuche die Zahlung zu verarbeiten
-      const paymentResult = await handlePayment(card, billingDetails);
-      if (paymentResult.error) {
-        setErrors((errors) => ({
-          ...errors,
-          cardError: paymentResult.error.message,
-        }));
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setError("You must be logged in to perform this action.");
         return;
       }
 
-      // Weiterleitung oder Bestätigungslogik hier einfügen
-      console.log("Payment successful:", paymentResult);
-    } catch (error) {
-      console.error(
-        "Failed to save shipping info:",
-        error.response || error.message
+      await axios.post(
+        "http://localhost:5000/shipping",
+        { fullName, address, city, zip, country },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        }
       );
-      setErrors((errors) => ({
-        ...errors,
-        formError:
-          "Failed to save shipping information. " +
-          (error.response?.data.message || error.message),
-      }));
-    }
-  };
-
-  const handlePayment = async (card, billingDetails) => {
-    try {
-      if (!stripe) {
-        return { error: { message: "Stripe not loaded correctly." } };
-      }
-
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
-        card: card,
-        billing_details: {
-          name: billingDetails.fullName,
-          email: billingDetails.email, // Stellen Sie sicher, dass E-Mail-Adresse vorhanden ist
-          address: {
-            line1: billingDetails.address,
-            city: billingDetails.city,
-            postal_code: billingDetails.zip,
-            country: billingDetails.country,
-          },
-        },
-      });
-
-      if (error) {
-        return { error };
-      }
-
-      // Hier können weitere Zahlungsverarbeitungsschritte folgen
-      return { paymentMethod };
-    } catch (error) {
-      console.error("Error during payment:", error);
-      return { error };
+      navigate("/payment");
+    } catch (error: any) {
+      setError(
+        `Error during registration: ${
+          error.response?.data.message || error.message
+        }`
+      );
+      console.error("Error during registration:", error.response || error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ width: "450px" }}>
-      {errors.formError && <p className="error">{errors.formError}</p>}
-      <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-        <input
-          type="text"
-          name="fullName"
-          value={billingDetails.fullName}
-          onChange={handleChange}
-          placeholder="Full Name"
-        />
-        <input
-          type="text"
-          name="address"
-          value={billingDetails.address}
-          onChange={handleChange}
-          placeholder="Address"
-        />
-        <input
-          type="text"
-          name="city"
-          value={billingDetails.city}
-          onChange={handleChange}
-          placeholder="City"
-        />
-        <input
-          type="text"
-          name="zip"
-          value={billingDetails.zip}
-          onChange={handleChange}
-          placeholder="Postal Code"
-        />
-        <input
-          type="text"
-          name="country"
-          value={billingDetails.country}
-          onChange={handleChange}
-          placeholder="Country"
-        />
-
-        <button>Continue</button>
+    <>
+      <div>
+        <div className="w-1/2 h-half bg-[#1a1a1a] text-white flex justify-center items-center">
+          <form onSubmit={handleSubmit}>
+            {error && <p className="error text-red-500">{error}</p>}
+            <div className="mb-4" style={{ width: "150px" }}>
+              <input
+                className="w-full p-2 rounded"
+                type="text"
+                placeholder="Full Name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+              />
+            </div>
+            <div className="mb-4" style={{ width: "150px" }}>
+              <input
+                className="w-full p-2 rounded"
+                type="text"
+                placeholder="Address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div className="mb-4" style={{ width: "150px" }}>
+              <input
+                className="w-full p-2 rounded"
+                type="text"
+                placeholder="City"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </div>
+            <div className="mb-4" style={{ width: "150px" }}>
+              <input
+                className="w-full p-2 rounded"
+                type="text"
+                placeholder="Zip Code"
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+              />
+            </div>
+            <div className="mb-4" style={{ width: "150px" }}>
+              <input
+                className="w-full p-2 rounded"
+                type="text"
+                placeholder="Country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            </div>
+            <button className="py-2 px-2 bg-blue-500 text-black rounded hover:bg-blue-600">
+              Continue to Payment
+            </button>
+            <img
+              style={{ width: "200px", position: "absolute", left: "30%" }}
+              src={Image}
+              alt=""
+            />
+          </form>
+        </div>
+        <div className="w-1/2 h-full flex justify-center items-center bg-teal-800">
+          <h2 className="text-3xl text-white">Complete Your Order</h2>
+        </div>
       </div>
-      <div style={{ marginTop: "100px ", width: "300px" }}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {},
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-        <button
-          type="submit"
-          disabled={!stripe || !clientSecret}
-          style={{
-            marginLeft: "20px",
-            marginTop: "30px",
-            backgroundColor: "green",
-          }}
-        >
-          Pay
-        </button>
-      </div>
-    </form>
+    </>
   );
-};
+}
 
 export default CheckoutForm;
+
+// Grundstruktur
+
+// State-Variablen:
+// fullName, address, city, zip, country speichern die Werte der Eingabefelder des Formulars.
+// error speichert Fehlermeldungen, die während der Verarbeitung des Formulars auftreten können.
+
+// Navigations-Hook: useNavigate wird verwendet, um den Nutzer nach erfolgreicher Verarbeitung des Formulars auf eine andere Seite weiterzuleiten.
+
+// Formular-Handling
+
+// handleSubmit:
+// Wird aufgerufen, wenn das Formular abgesendet wird.
+// Überprüft zunächst, ob alle Felder ausgefüllt sind. Wenn nicht, wird eine Fehlermeldung gesetzt und die Funktion bricht ab.
+// Überprüft, ob ein gültiger Token im LocalStorage vorhanden ist, was notwendig ist, um sicherzustellen, dass der Nutzer angemeldet ist.
+// Sendet die eingegebenen Daten an einen Server, wenn alle Überprüfungen erfolgreich waren. Verwendet dabei die Axios-Bibliothek, um eine POST-Anfrage an die URL http://localhost:5000/shipping zu senden. Die Daten des Formulars werden zusammen mit dem Authentifizierungstoken im Request-Header gesendet.
+// Bei erfolgreichem Request wird der Nutzer zu einer Erfolgsseite weitergeleitet.
+// Bei einem Fehler wird die Fehlermeldung aktualisiert und angezeigt.

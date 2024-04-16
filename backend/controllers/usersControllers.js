@@ -51,7 +51,7 @@ export const login = async (req, res) => {
     );
 
     // Senden des Tokens im Response
-    res.json({ token: token });
+    res.json({ token: token, userName: user.username });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).send(error.message);

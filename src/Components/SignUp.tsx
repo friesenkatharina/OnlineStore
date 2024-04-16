@@ -8,7 +8,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -22,10 +22,10 @@ function SignUp() {
           withCredentials: true,
         }
       );
-
+      localStorage.setItem("userName", username);
       navigate("/login");
       console.log(response.data);
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         "Registration error:",
         error.response ? error.response.data : "Unknown error"

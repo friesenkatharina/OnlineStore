@@ -7,39 +7,33 @@ import { Navbar } from "./Components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
-import ProtectedRoute from "./Components/ProtectedRoute";
-import CheckoutForm from "./Components/Checkouform";
-import ContactForm from "./Components/ContactForm";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+import ProtectedRoute from "../src/Components/ProtectedRoute";
+import CheckoutForm from "../src/Components/Checkouform";
+import ContactForm from "../src/Components/ContactForm";
+import Payment from "./Components/Payment";
 
 function App() {
-  const stripePromise = loadStripe("VITE_REACT_APP_PUBLIC_STRIPE_KEY");
-
   return (
     <ShoppingCartProvider>
       <Navbar />
       <Container className="mb-4">
-        <Elements stripe={stripePromise}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-
-            <Route
-              path="/store"
-              element={
-                <ProtectedRoute>
-                  <Store />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/checkoutform" element={<CheckoutForm />} />
-            <Route path="/contact" element={<ContactForm />} />
-            {/* <Route path="/register" element={<Register />} /> */}
-          </Routes>
-        </Elements>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/store"
+            element={
+              <ProtectedRoute>
+                <Store />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/checkoutform" element={<CheckoutForm />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/contact" element={<ContactForm />} />
+        </Routes>
       </Container>
     </ShoppingCartProvider>
   );
