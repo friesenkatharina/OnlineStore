@@ -3,6 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 // import { CartSearchField } from "./CartSearchField";
+
 import "../styles/button.css";
 
 type StoreItemProps = {
@@ -29,6 +30,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   return (
     <>
       {/* <CartSearchField onSearchTermChange={handleSearchTermChange} /> */}
+
       <Card
         className="card-custom"
         style={{ backgroundColor: "#d9f99d", padding: "20px" }}
