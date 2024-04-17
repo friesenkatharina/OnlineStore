@@ -1,5 +1,11 @@
+import DragAndDrop from "../Components/DragandDrop";
+
 function AccountPage() {
-  return <div>Hallo</div>;
+  return (
+    <div>
+      <DragAndDrop />
+    </div>
+  );
 }
 
 export default AccountPage;

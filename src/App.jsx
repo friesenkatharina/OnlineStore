@@ -11,6 +11,7 @@ import ProtectedRoute from "../src/Components/ProtectedRoute";
 import CheckoutForm from "../src/Components/Checkouform";
 import ContactForm from "../src/Components/ContactForm";
 import Payment from "./Components/Payment";
+import DragAndDrop from "./Components/DragandDrop";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
           <Route path="/checkoutform" element={<CheckoutForm />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<ContactForm />} />
+          <Route path="/draganddrop" element={<DragAndDrop />} />{" "}
+          {/* Route für DragAndDrop hinzufügen */}
         </Routes>
       </Container>
     </ShoppingCartProvider>
