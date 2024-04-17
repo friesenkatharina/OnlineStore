@@ -43,7 +43,7 @@ app.use((req, res, next) => {
   if (req.method !== "GET") {
     console.log(`req.body: ${JSON.stringify(req.body)}`);
   }
-  console.log("\n");
+  console.log(`Cookies: ${JSON.stringify(req.cookies)}`);
   next();
 });
 

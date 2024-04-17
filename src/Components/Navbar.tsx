@@ -19,7 +19,7 @@ export function Navbar() {
 
   // Timer for auto logout
   useEffect(() => {
-    let timer;
+    let timer: number;
     const handleActivity = () => {
       clearTimeout(timer);
       timer = setTimeout(() => {
