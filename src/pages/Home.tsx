@@ -20,7 +20,7 @@ function Home(): React.JSX.Element {
             marginTop: "50px",
           }}
         >
-          Welcome to online shop!
+          Welcome to Creative Store for Makramee
         </h1>
       </div>
       <div
@@ -74,7 +74,7 @@ function Home(): React.JSX.Element {
             <ImageModal src={headerImage} alt="Shop" />
           </div>
         </header>
-        <div>{/* <Slider /> */}</div>
+
         <div className="space-below" style={{ marginTop: "200px" }}></div>
         <Footer />
       </div>

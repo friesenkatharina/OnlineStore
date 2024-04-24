@@ -2,10 +2,15 @@ import React, { useEffect } from "react";
 import { Container, Nav, Navbar as NavbarBs, Button } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+// import { useTheme } from "../context/ThemeContext";
+import "../styles/index.css";
 
 export function Navbar() {
   const { openCart, cartQuantity } = useShoppingCart();
+
   const navigate = useNavigate();
+
+  // const { theme, toggleTheme } = useTheme();
 
   const isUserSignedIn = !!localStorage.getItem("token");
 
@@ -61,6 +66,7 @@ export function Navbar() {
           <Nav.Link as={NavLink} to="/about" style={{ color: "#a3e635" }}>
             About
           </Nav.Link>
+
           {isUserSignedIn ? (
             <>
               <Nav.Link as={NavLink} to="/account" style={{ color: "#a3e635" }}>
@@ -79,7 +85,16 @@ export function Navbar() {
               Signup
             </Nav.Link>
           )}
+
+          {/* <Button
+            variant="outline-success"
+            onClick={toggleTheme}
+            style={{ marginLeft: "0.5rem", height: "40px", width: "40px" }}
+          >
+            {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+          </Button> */}
         </Nav>
+
         {isUserSignedIn && cartQuantity > 0 && (
           <Button
             onClick={openCart}
