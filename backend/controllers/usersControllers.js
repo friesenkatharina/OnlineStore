@@ -19,7 +19,7 @@ export const register = async (req, res) => {
       email,
       password: hashedPassword,
     });
-
+    console.log(user);
     await user.save();
     res.status(201).send("User successfully registered.");
   } catch (error) {

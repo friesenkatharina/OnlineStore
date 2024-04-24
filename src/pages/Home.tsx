@@ -57,6 +57,7 @@ function Home(): React.JSX.Element {
             earum!
           </p>
         </div>
+
         <header className=" shop-header">
           <div style={{ marginTop: "100px", marginLeft: "50px" }}>
             {" "}
