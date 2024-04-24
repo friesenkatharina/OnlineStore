@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../Components/Footer";
-import shopImage from "../assets/BlatGruen.jpeg";
-import headerImage from "../assets/FlowerRegal.jpeg";
+import shopImage from "/BlatGruen.jpeg";
+import headerImage from "/MakraSymetrie.jpeg";
 import Slider from "../Components/Slider";
 import ImageModal from "../Components/ImageModal";
 import "../styles/index.css";

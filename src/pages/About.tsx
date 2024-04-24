@@ -1,6 +1,6 @@
 import React from "react";
 import ContactForm from "../Components/ContactForm";
-import Image from "../assets/DreamWhite.jpeg";
+import Image from "/DreamWhite.jpeg";
 
 function About() {
   return (
