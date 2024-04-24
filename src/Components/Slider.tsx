@@ -1,11 +1,10 @@
-import React from "react";
 import { Autoplay, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/controller";
 import "../styles/slider.css";
-import imageData from "../data/items.json";
+import imageData from "../items.json";
 
 const Slider = () => {
   const images = imageData.map((item) => item.imgUrl);

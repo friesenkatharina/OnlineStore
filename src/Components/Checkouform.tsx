@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Image from "../assets/shopping-cart.svg";
+// import Image from "../assets/shopping-cart.svg";
 
 function CheckoutForm() {
   const [fullName, setFullName] = useState("");
@@ -104,7 +104,7 @@ function CheckoutForm() {
             </button>
             <img
               style={{ width: "200px", position: "absolute", left: "30%" }}
-              src={Image}
+              src={Image.toString()}
               alt=""
             />
           </form>

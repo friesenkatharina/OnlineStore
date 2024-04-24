@@ -1,25 +1,21 @@
 import React from "react";
 import ContactForm from "../Components/ContactForm";
-import "../styles/slider.css";
 import Image from "../assets/DreamWhite.jpeg";
 
 function About() {
   return (
     <>
-      <div style={{ color: "green", padding: "0 1rem" }}>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium
-          consectetur corrupti consequuntur ipsum officiis quibusdam molestiae.
-          Magnam, molestias sed...
-        </p>
-      </div>
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}
       >
         <img
           src={Image}
           alt="Dreamy Scene"
-          style={{ maxWidth: "100%", height: "auto" }}
+          style={{
+            maxWidth: "50%",
+            height: "auto",
+            border: "10px solid grey",
+          }}
         />
       </div>
       <div style={{ padding: "1rem", textAlign: "center", marginTop: "1rem" }}>

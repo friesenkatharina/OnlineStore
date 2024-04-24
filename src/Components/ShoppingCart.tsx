@@ -3,7 +3,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import React, { useNavigate } from "react-router-dom";
-import storeItems from "../data/items.json";
+import storeItems from "../items.json";
 import { useMemo } from "react";
 
 type ShoppingCartProps = {

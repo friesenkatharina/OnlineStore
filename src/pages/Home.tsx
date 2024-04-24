@@ -10,6 +10,8 @@ function Home(): React.JSX.Element {
   return (
     <>
       <Slider />
+
+      <header style={{ backgroundImage: "" }}></header>
       <div>
         <h1
           style={{

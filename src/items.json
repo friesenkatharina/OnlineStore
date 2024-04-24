@@ -9,7 +9,7 @@
     "id": 2,
     "name": " sparkleNight",
     "price": 89.9,
-    "imgUrl": "./src/assets/sparkleNight.JPEG"
+    "imgUrl": "./src/assets/sparkleNight.jpeg"
   },
   {
     "id": 3,
@@ -63,7 +63,7 @@
     "id": 11,
     "name": "sparkleNight",
     "price": 59.9,
-    "imgUrl": "./src/assets/sparkleNight.JPEG"
+    "imgUrl": "./src/assets/sparkleNight.jpeg"
   },
   {
     "id": 12,

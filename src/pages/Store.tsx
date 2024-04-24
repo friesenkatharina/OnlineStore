@@ -1,6 +1,6 @@
 import { Col, Row, Dropdown } from "react-bootstrap";
 import { StoreItem } from "../Components/StoreItem";
-import storeItems from "../data/items.json";
+import storeItems from "../items.json";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DragAndDrop from "../Components/DragandDrop";
