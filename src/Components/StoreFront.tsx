@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { CartSearchField } from "./CartSearchField";
+import { CartSearchField } from "../Components/CartSearchField";
 import { StoreItem } from "../Components/StoreItem";
-import items from "../data/items.json";
+import items from "../items.json";
 
 const StoreFront = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,7 +15,9 @@ const StoreFront = () => {
 
   return (
     <div>
-      <CartSearchField onSearchTermChange={(term) => setSearchTerm(term)} />
+      <CartSearchField
+        onSearchTermChange={(term: string) => setSearchTerm(term)}
+      />
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
         {filteredItems.length > 0
           ? filteredItems.map((item) => (
