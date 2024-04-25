@@ -111,3 +111,16 @@
   background: rgb(50, 50, 50);
   color: white;
 }
+
+@media (max-width: 600px) {
+  .board {
+    display: none;
+  }
+}
+
+/* @media (max-width: 600px) {
+  .form-container,
+  .lanes {
+    display: none;
+  }
+} */

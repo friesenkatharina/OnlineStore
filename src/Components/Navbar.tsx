@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 // import { useTheme } from "../context/ThemeContext";
 import "../styles/index.css";
+import Image from "/makrameeLogo.png";
 
 export function Navbar() {
   const { openCart, cartQuantity } = useShoppingCart();
@@ -24,7 +25,7 @@ export function Navbar() {
 
   // Timer for auto logout
   useEffect(() => {
-    let timer: number;
+    let timer: NodeJS.Timeout;
     const handleActivity = () => {
       clearTimeout(timer);
       timer = setTimeout(() => {
@@ -52,10 +53,25 @@ export function Navbar() {
   return (
     <NavbarBs
       sticky="top"
-      className="shadow-sm mb-3"
-      style={{ backgroundColor: "#14532d", opacity: "0.9" }}
+      className="shadow-sm mb-4"
+      style={{
+        backgroundColor: "#14532d",
+        opacity: "0.9",
+        height: "100px",
+        fontSize: "20px",
+      }}
     >
       <Container>
+        <img
+          src={Image}
+          alt="Image"
+          style={{
+            width: "50px",
+            position: "absolute",
+            left: "5%",
+            top: "70%",
+          }}
+        />
         <Nav className="me-auto">
           <Nav.Link as={NavLink} to="/" style={{ color: "#a3e635" }}>
             Home

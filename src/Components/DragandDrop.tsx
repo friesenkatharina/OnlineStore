@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/draganddrop.css";
 
 type TaskProps = {
@@ -25,6 +25,17 @@ type LaneTasks = {
 };
 
 const DragAndDrop: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const [lanes, setLanes] = useState<LaneTasks>({
     TODO: [],
     Doing: [],
@@ -84,7 +95,7 @@ const DragAndDrop: React.FC = () => {
   };
 
   return (
-    <div className="board">
+    <div className="board" style={{ display: isMobile ? "none" : "block" }}>
       <div className="form-container">
         <form onSubmit={handleFormSubmit}>
           <input

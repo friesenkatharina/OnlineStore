@@ -7,16 +7,15 @@ import { Navbar } from "./Components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
-import ProtectedRoute from "../src/Components/ProtectedRoute";
-import CheckoutForm from "../src/Components/Checkouform";
-import ContactForm from "../src/Components/ContactForm";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import CheckoutForm from "./Components/Checkouform";
+import ContactForm from "./Components/ContactForm";
 import Payment from "./Components/Payment";
 import DragAndDrop from "./Components/DragandDrop";
 
 function App() {
   return (
     <ShoppingCartProvider>
-      {" "}
       <Navbar />
       <Container className="mb-4">
         <Routes>
@@ -36,7 +35,6 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/draganddrop" element={<DragAndDrop />} />{" "}
-          {/* Route für DragAndDrop hinzufügen */}
         </Routes>
       </Container>
     </ShoppingCartProvider>
