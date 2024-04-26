@@ -31,7 +31,7 @@ function Login() {
   };
 
   return (
-    <div className="wrapper">
+    <div className="wrapper" style={{ marginTop: "100px" }}>
       <form onSubmit={handleLogin}>
         <h1>Login</h1>
         <div className="input-box">

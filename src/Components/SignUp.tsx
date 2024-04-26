@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../styles/signup.css";
+import "../styles/login.css";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -35,66 +35,38 @@ function SignUp() {
   };
 
   return (
-    <>
-      <h3 style={{ color: "green", marginTop: "50px" }}>
-        signUp to access your account to online store. 😃
-      </h3>
-      <div
-        style={{
-          backgroundColor: "grey",
-          width: "600px",
-          marginTop: "50px",
-          marginLeft: "250px",
-        }}
-      >
-        <div className="w-1/2 h-full bg-[#1a1a1a] text-white flex justify-center items-center">
-          <form
-            className="text-center border rounded-lg w-[600px] h-[400px] p-9"
-            onSubmit={handleSubmit}
-          >
-            <div className="mb-4">
-              <label>Email</label>
-              <input
-                className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mb-4">
-              <label>Username</label>
-              <input
-                className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="mb-4">
-              <label>Password</label>
-              <input
-                className="w-[400px] h-[40px] rounded-xl bg-zinc-700 p-2 block mt-1"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button
-              className="w-[200px] h-[50px] border hover:bg-teal-900"
-              type="submit"
-            >
-              Sign Up
-            </button>
-          </form>
+    <div className="wrapper">
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="input-box">
+          <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-        <div className="w-1/2 h-full flex justify-center items-center bg-teal-800">
-          <h2 className="text-3xl text-white">Sign Up</h2>
+        <div className="input-box">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
-      </div>
-    </>
+        <div className="input-box">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className="btn" type="submit">
+          Sign Up
+        </button>
+      </form>
+    </div>
   );
 }
 
