@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
 import { Container, Nav, Navbar as NavbarBs, Button } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useShoppingCart } from "../context/ShoppingCartContext";
 // import { useTheme } from "../context/ThemeContext";
 import "../styles/index.css";
 import Image from "/makrameeLogo.png";
 
 export function Navbar() {
-  const { openCart, cartQuantity } = useShoppingCart();
-
   const navigate = useNavigate();
 
   // const { theme, toggleTheme } = useTheme();
@@ -64,7 +61,7 @@ export function Navbar() {
       <Container>
         <img
           src={Image}
-          alt="Image"
+          alt="Logo"
           style={{
             width: "50px",
             position: "absolute",
@@ -110,30 +107,6 @@ export function Navbar() {
             {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
           </Button> */}
         </Nav>
-
-        {isUserSignedIn && cartQuantity > 0 && (
-          <Button
-            onClick={openCart}
-            variant="outline-success" // Consistency in button style
-            style={{ position: "relative", width: "3rem", height: "3rem" }}
-            className="rounded-circle"
-          >
-            <div
-              className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
-              style={{
-                color: "white",
-                width: "1.5rem",
-                height: "1.5rem",
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                transform: "translate(25%, 25%)",
-              }}
-            >
-              {cartQuantity}
-            </div>
-          </Button>
-        )}
       </Container>
     </NavbarBs>
   );

@@ -35,7 +35,7 @@ function SignUp() {
   };
 
   return (
-    <div className="wrapper">
+    <div style={{ marginTop: "200p" }} className="wrapper">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-box">
