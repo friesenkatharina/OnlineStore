@@ -16,7 +16,6 @@ app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
   "https://online-store-two-plum.vercel.app",
-  "http://localhost/*",
 ];
 
 const corsOptions = {
@@ -49,4 +48,9 @@ app.use((req, res, next) => {
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port} \n`);
+});
+
+app.use((err, req, res) => {
+  console.error("An error occurred:", err.message);
+  res.status(err.status || 500).send(err.message);
 });

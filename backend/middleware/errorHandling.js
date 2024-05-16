@@ -1,13 +1,12 @@
 const errorResponder = (err, req, res) => {
   res.status(err.status || 500);
   res.json({
-    error: err,
+    error: err.message || "Internal Server Error",
   });
 };
 
-const invalidPathHandler = (req, res, next) => {
+const invalidPathHandler = (req, res) => {
   res.status(404).send("Page not found");
-  next();
 };
 
 export { errorResponder, invalidPathHandler };

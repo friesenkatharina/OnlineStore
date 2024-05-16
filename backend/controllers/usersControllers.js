@@ -57,3 +57,13 @@ export const login = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+// LOGOUT
+export const logout = (req, res) => {
+  try {
+    res.status(200).send("Successfully logged out.");
+  } catch (error) {
+    console.error("Logout error:", error);
+    res.status(500).send(error.message);
+  }
+};
