@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import axios from "axios"; //axios is a promise based HTTP client for the browser and node.js
+import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 import "../styles/login.css"; // Make sure to import your CSS here
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("http://localhost:5000/users/login", {
         email,
         password,
       });
@@ -27,6 +27,7 @@ function Login() {
       navigate("/store");
     } catch (error) {
       alert("Error during login");
+      console.error("Login error:", error);
     }
   };
 
@@ -36,8 +37,8 @@ function Login() {
         <h1>Login</h1>
         <div className="input-box">
           <input
-            type="text"
-            placeholder="Username"
+            type="email"
+            placeholder="Email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -72,6 +73,6 @@ function Login() {
       </form>
     </div>
   );
-}
+};
 
 export default Login;

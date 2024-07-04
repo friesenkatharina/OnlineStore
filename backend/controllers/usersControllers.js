@@ -6,7 +6,7 @@ import process from "process";
 // REGISTER
 export const register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { email, username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const userExists = await User.findOne({ email });
 
@@ -15,11 +15,10 @@ export const register = async (req, res) => {
     }
 
     const user = new User({
-      username,
       email,
+      username,
       password: hashedPassword,
     });
-    console.log(user);
     await user.save();
     res.status(201).send("User successfully registered.");
   } catch (error) {
