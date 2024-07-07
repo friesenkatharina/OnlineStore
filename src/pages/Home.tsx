@@ -5,6 +5,8 @@ import headerImage from "/MakraSymetrie.jpeg";
 import Slider from "../Components/Slider";
 import ImageModal from "../Components/ImageModal";
 import "../styles/index.css";
+// import Rating from "@mui/material/Rating";
+import Rating from "../Components/Rating";
 
 function Home(): React.JSX.Element {
   return (
@@ -22,6 +24,7 @@ function Home(): React.JSX.Element {
         >
           Welcome to Creative Store for Makramee
         </h1>
+        <Rating />
       </div>
       <div
         style={{

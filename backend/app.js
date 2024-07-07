@@ -7,7 +7,8 @@ import "./db.connect.js";
 import cookieParser from "cookie-parser";
 import process from "process";
 import usersRoutes from "./routes/usersRoutes.js";
-import shippingRoutes from "./routes/shipping.js";
+// import shippingRoutes from "./routes/shipping.js";
+import ratingRoutes from "./routes/ratingRoutes.js";
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  // 'https://online-store-two-plum.vercel.app',
+  "https://online-store-two-plum.vercel.app",
 ];
 
 const corsOptions = {
@@ -45,7 +46,8 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/users", usersRoutes);
-app.use("/shipping", shippingRoutes);
+// app.use("/shipping", shippingRoutes);
+app.use("/ratings", ratingRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

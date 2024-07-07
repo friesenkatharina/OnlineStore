@@ -3,17 +3,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
-function SignUp() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const SignUp: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/register",
+        "http://localhost:5000/users/register",
         {
           email,
           username,
@@ -24,7 +24,7 @@ function SignUp() {
         }
       );
       localStorage.setItem("userName", username);
-      navigate("/login");
+      navigate("/home");
       console.log(response.data);
     } catch (error: any) {
       console.error(
@@ -68,6 +68,6 @@ function SignUp() {
       </form>
     </div>
   );
-}
+};
 
 export default SignUp;
