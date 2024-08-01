@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./Carousel.module.css"; // Assuming CSS modules
-import { IonIcon } from "@ionic/react"; // Import the IonIcon component from
+import styles from "./Carousel.module.css"; 
+import { IonIcon } from "@ionic/react"; 
 
 const Carousel: React.FC = () => {
   const sliderRef = useRef<HTMLUListElement>(null);
@@ -46,7 +46,7 @@ const Carousel: React.FC = () => {
             <button>Read More</button>
           </div>
         </li>
-        {/* Additional items... */}
+    
       </ul>
 
       <nav className={styles.nav}>

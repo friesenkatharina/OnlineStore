@@ -5,7 +5,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const isUserSignedIn = !!localStorage.getItem("token");
 
   if (!isUserSignedIn) {
-    // User is not signed in, redirect to login page
+    // redirect to login page
     return <Navigate to="/login" replace />;
   }
 

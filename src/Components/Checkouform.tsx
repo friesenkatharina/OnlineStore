@@ -1,4 +1,4 @@
-//  Formular zur Eingabe von Versandinformationen bereitstellt.
+
 
 import React, { useState } from "react";
 import axios from "axios";
@@ -120,9 +120,8 @@ function CheckoutForm() {
 export default CheckoutForm;
 
 // Grundstruktur
+// State-Variablen: fullName, address, city, zip, country speichern die Werte der Eingabefelder des Formulars.
 
-// State-Variablen:
-// fullName, address, city, zip, country speichern die Werte der Eingabefelder des Formulars.
 // error speichert Fehlermeldungen, die während der Verarbeitung des Formulars auftreten können.
 
 // Navigations-Hook: useNavigate wird verwendet, um den Nutzer nach erfolgreicher Verarbeitung des Formulars auf eine andere Seite weiterzuleiten.
@@ -131,7 +130,7 @@ export default CheckoutForm;
 
 // handleSubmit:
 // Wird aufgerufen, wenn das Formular abgesendet wird.
-// Überprüft zunächst, ob alle Felder ausgefüllt sind. Wenn nicht, wird eine Fehlermeldung gesetzt und die Funktion bricht ab.
+// Überprüft zunächst, ob alle Felder ausgefüllt sind. Wenn nicht, wird eine Fehlermeldung gesetzt und die unktion bricht ab.
 // Überprüft, ob ein gültiger Token im LocalStorage vorhanden ist, was notwendig ist, um sicherzustellen, dass der Nutzer angemeldet ist.
 // Sendet die eingegebenen Daten an einen Server, wenn alle Überprüfungen erfolgreich waren. Verwendet dabei die Axios-Bibliothek, um eine POST-Anfrage an die URL http://localhost:5000/shipping zu senden. Die Daten des Formulars werden zusammen mit dem Authentifizierungstoken im Request-Header gesendet.
 // Bei erfolgreichem Request wird der Nutzer zu einer Erfolgsseite weitergeleitet.

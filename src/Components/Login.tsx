@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios"; //axios is a promise based HTTP client for the browser and node.js
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
-import "../styles/login.css"; // Make sure to import your CSS here
+import axios from "axios"; 
+import { useNavigate } from "react-router-dom";
+import "../styles/login.css";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");

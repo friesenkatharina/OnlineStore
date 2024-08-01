@@ -25,6 +25,7 @@ type LaneTasks = {
 };
 
 const DragAndDrop: React.FC = () => {
+  
   const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
 
   useEffect(() => {
@@ -36,11 +37,14 @@ const DragAndDrop: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+
   const [lanes, setLanes] = useState<LaneTasks>({
     TODO: [],
     Doing: [],
     Done: [],
   });
+
+
   const [input, setInput] = useState("");
 
   const handleDrop = (
@@ -48,6 +52,9 @@ const DragAndDrop: React.FC = () => {
     targetLane: keyof LaneTasks
   ) => {
     event.preventDefault();
+
+
+
     const draggedElement = document.querySelector(
       ".is-dragging"
     ) as HTMLDivElement;
