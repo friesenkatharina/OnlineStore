@@ -46,10 +46,24 @@ Stripe ist ein umfassendes Zahlungsverarbeitungssystem, das speziell dafür entw
 
 # cors
 
-CORS ermöglicht es Servern, Regeln festzulegen, wer ihre Ressourcen abrufen darf. Diese Regeln werden durch HTTP-Header gesteuert, die vom Server zusammen mit den Ressourcen gesendet werden.
+CORS ermöglicht es Servern, Regeln festzulegen, wer ihre Ressourcen abrufen darf. Diese Regeln werden durch HTTP-Header gesteuert, die vom Server zusammen mit den Ressourcen gesendet werden. Beschränkt den Zugriff auf bestimmte Ursprünge (Domains).
 
 # dotenv
 
 dotenv ist ein einfaches und praktisches NPM-Paket in Node.js, das dazu dient, Umgebungsvariablen aus einer .env-Datei in den process.env-Speicherbereich des Node.js-Prozesses zu laden. dies ist besonders nützlich für die Verwaltung von API Schlüsseln und Keys die geschützt werden müssen.
 
 # cookie-parser
+
+Ermöglicht das Arbeiten mit Cookies, z.B. für Authentifizierungstokens.
+
+# helmet
+Setzt HTTP-Header zum Schutz vor bekannten Websicherheitsrisiken.
+
+# rateLimit
+
+Begrenzung der Anfragen pro IP innerhalb eines bestimmten Zeitfensters (Schutz vor Brute-Force-Angriffen).
+Schutz vor Überlastung und Missbrauch durch Begrenzung der Anzahl der Anfragen pro IP.
+
+# compression
+
+ Komprimiert die HTTP-Antworten, um die Übertragungsgeschwindigkeit zu erhöhen. Reduziert die Größe der HTTP-Antworten.

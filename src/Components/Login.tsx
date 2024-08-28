@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios"; 
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
+import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -14,22 +15,34 @@ const Login: React.FC = () => {
       const response = await axios.post("http://localhost:5000/users/login", {
         email,
         password,
-      });
-
-      const { token, userName } = response.data;
+      }, { withCredentials: true });
+  
+      const { userName } = response.data;
       alert("Login successful 🥳");
-
-      localStorage.setItem("token", token);
+  
       if (userName) {
         localStorage.setItem("userName", userName);
+        fetchUserProfile();  // Benutzerdaten abrufen
+        navigate("/store");
       }
-
-      navigate("/store");
     } catch (error) {
       alert("Error during login");
       console.error("Login error:", error);
     }
   };
+
+  const fetchUserProfile = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/users/profile", {
+        withCredentials: true,
+      });
+      console.log("User Profile:", response.data);
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
+  
+
 
   return (
     <div className="wrapper" style={{ marginTop: "100px" }}>
@@ -67,10 +80,14 @@ const Login: React.FC = () => {
         </button>
         <div className="register-link">
           <p>
-            Don’t have an account? <a href="#">Sign up</a>
+            Don’t have an account? <Link to="/signup">Sign up</Link>
           </p>
         </div>
       </form>
+
+      {/* <button onClick={deleteUserAccount} className="btn">
+        Delete Account
+      </button> */}
     </div>
   );
 };

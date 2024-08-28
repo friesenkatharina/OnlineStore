@@ -10,7 +10,7 @@ const Slider = () => {
   const images = imageData.map((item) => item.imgUrl);
 
   return (
-    <section className="bg-white mt-10 mx-4 sm:mx-8 md:mx-20 lg:mx-36 z-10 slider-container">
+    <section className="bg-white slider-container">
       <Swiper
         modules={[Autoplay, A11y]}
         spaceBetween={30}
@@ -26,13 +26,13 @@ const Slider = () => {
             <a href="/#">
               <img
                 style={{
-                  width: "400px",
+              
                   border: "15px solid grey",
                   padding: "10px",
                 }}
                 src={img}
                 alt={`slide-${index + 1}`}
-                className="w-fit h-[500px] mx-auto select-none slide-image"
+                className=" select-none slide-image"
               />
             </a>
           </SwiperSlide>

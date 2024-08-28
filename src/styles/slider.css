@@ -1,19 +1,11 @@
 .slider-container {
-  max-width: 800px;
-  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+ 
 }
 
 .slide-image {
   width: 100%;
   height: auto;
   object-fit: cover;
-}
-@media (max-width: 640px) {
-  .slider-container {
-    margin-top: 10px;
-  }
-  .slide-image {
-    max-width: 250px;
-    height: auto;
-  }
 }

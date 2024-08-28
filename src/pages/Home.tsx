@@ -52,14 +52,17 @@ function Home(): React.JSX.Element {
             className=" welcome-text"
           >
             <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
-            earum!
+            Herzlich Willkommen in unserem Makramee Online Shop!
+
+            Wir freuen uns, dass Sie den Weg zu uns gefunden haben. Hier erwarten Sie einzigartige, handgefertigte Makramee-Kreationen, die mit viel Liebe zum Detail und Sorgfalt hergestellt wurden. Jedes unserer Stücke erzählt seine eigene Geschichte und bringt einen Hauch von Boho-Chic in Ihr Zuhause oder in Ihren Alltag.
             <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
-            earum!
+            Unsere Leidenschaft für das traditionelle Handwerk spiegelt sich in jedem Knoten wider. Ob es sich um Wandbehänge, Pflanzenhänger, Schmuck oder andere Dekorationsartikel handelt – bei uns finden Sie stilvolle Unikate, die mit hochwertigen Materialien und einer Extraportion Herzblut gefertigt wurden.
             <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
-            earum!
+            Schauen Sie sich um und lassen Sie sich von unserer Auswahl inspirieren. Wir sind sicher, dass auch für Sie das perfekte Makramee-Stück dabei ist, das Ihrem Zuhause oder Ihrem Leben das gewisse Etwas verleiht.
+
+            Viel Spaß beim Stöbern und Einkaufen!
+
+
           </p>
         </div>
 

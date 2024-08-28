@@ -4,24 +4,46 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import process from "process";
-import helmet from "helmet";
+// import helmet from "helmet";
+// import rateLimit from 'express-rate-limit';
+import compression from 'compression';
 
 
-import "./config.js";
+// import "./config.js";
 import "./db.connect.js";
 import usersRoutes from "./routes/usersRoutes.js";
 import ratingRoutes from "./routes/ratingRoutes.js";
+
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
 
+
+// Rate Limiting Middleware
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, 
+//   max: 100, 
+// });
+
+// app.use(limiter);
+
+// Compression Middleware
+app.use(compression());
+
 const allowedOrigins = [
-  "http://localhost:5173",
+
   "http://localhost:5000",
-  "https://online-store-42yld3yta-katharina-s-projects.vercel.app/",
+  "http://localhost:5173",
+
+  // "https://online-store-42yld3yta-katharina-s-projects.vercel.app/",
 ];
+
+
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -32,7 +54,7 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true,
+  withCredentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -48,7 +70,7 @@ app.use((req, res, next) => {
 });
 
 
-app.use(helmet());
+// app.use(helmet());
 
 
 // Routes
@@ -62,7 +84,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.message });
 });
 
-// Start the server
+// server
 app.listen(process.env.PORT || 5000, () => {
   console.log(
     `Server is running on http://localhost:${process.env.PORT || 5000} \n`

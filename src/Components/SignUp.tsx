@@ -26,7 +26,8 @@ const SignUp: React.FC = () => {
       localStorage.setItem("userName", username);
       navigate("/home");
       console.log(response.data);
-    } catch (error: any) {
+    }
+    catch (error: any) {
       console.error(
         "Registration error:",
         error.response ? error.response.data : "Unknown error"
@@ -35,7 +36,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div style={{ marginTop: "200p" }} className="wrapper">
+    <div style={{ marginTop: "200px" }} className="wrapper">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-box">
