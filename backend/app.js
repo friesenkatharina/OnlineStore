@@ -20,7 +20,7 @@ app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5000",
-  "https://online-store-two-plum.vercel.app",
+  "https://online-store-42yld3yta-katharina-s-projects.vercel.app/",
 ];
 
 const corsOptions = {
