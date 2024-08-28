@@ -2,12 +2,14 @@
 
 import express from "express";
 import cors from "cors";
-import "./config.js";
-import "./db.connect.js";
 import cookieParser from "cookie-parser";
 import process from "process";
+import helmet from "helmet";
+
+
+import "./config.js";
+import "./db.connect.js";
 import usersRoutes from "./routes/usersRoutes.js";
-// import shippingRoutes from "./routes/shipping.js";
 import ratingRoutes from "./routes/ratingRoutes.js";
 
 const app = express();
@@ -17,6 +19,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   "http://localhost:5173",
+  "http://localhost:5000",
   "https://online-store-two-plum.vercel.app",
 ];
 
@@ -44,6 +47,10 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.use(helmet());
+
+
 // Routes
 app.use("/users", usersRoutes);
 // app.use("/shipping", shippingRoutes);
@@ -52,8 +59,7 @@ app.use("/ratings", ratingRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error("An error occurred:", err.message);
-  res.status(err.status || 500).send(err.message);
-  next();
+  res.status(err.status || 500).json({ error: err.message });
 });
 
 // Start the server

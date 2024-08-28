@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import "./config.js";
 import process from "process";
 
-const dbURI = process.env.MONGODB_ATLAS_URI;
+const dbURI = process.env.MONGODB_URI;
 
 mongoose
   .connect(dbURI, {
