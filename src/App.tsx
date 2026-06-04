@@ -14,12 +14,14 @@ import { ThemeProvider } from "./context/ThemeContext";
 import AccountPage from "./Components/Account";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import FloatingSidebar from "./Components/FloatingSidebar";
 
 function App() {
   return (
     <ThemeProvider>
       <ShoppingCartProvider>
         <Navbar />
+        <FloatingSidebar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/account" element={<ProtectedRoute><AccountPage /></ProtectedRoute>} />
