@@ -46,8 +46,7 @@
     "react-router-dom": "^6.21.3",
     "stripe": "^14.24.0",
     "swiper": "^11.1.1",
-    "three": "^0.163.0",
-    "typescript": "^5.3.3"
+    "three": "^0.163.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -63,6 +62,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.4",
     "vite": "^5.0.8"
   }
 }
