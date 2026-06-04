@@ -1,9 +1,12 @@
-import { Button, Stack } from "react-bootstrap";
+import React from "react";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import storeItems from "../items.json";
 import { formatCurrency } from "../utilities/formatCurrency";
+import storeItems from "../items.json";
 
-
+type CartItemProps = {
+  id: number;
+  quantity: number;
+};
 
 export function CartItem({ id, quantity }: CartItemProps) {
   const { removeFromCart } = useShoppingCart();
@@ -11,32 +14,29 @@ export function CartItem({ id, quantity }: CartItemProps) {
   if (item == null) return null;
 
   return (
-    <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
+    <div className="flex items-center gap-3 py-3 border-b border-stone-100">
       <img
-        src={item.imgUrl}
-        style={{ width: "125px", height: "75px", objectFit: "cover" }}
+        src={item.imgUrl.trim()}
+        alt={item.name}
+        className="w-20 h-16 object-cover rounded-lg flex-shrink-0 bg-stone-100"
       />
-      <div className="me-auto">
-        <div>
-          {item.name}{" "}
-          {quantity > 1 && (
-            <span className="text-muted" style={{ fontSize: ".65rem" }}>
-              x{quantity}
-            </span>
-          )}
-        </div>
-        <div className="text-muted" style={{ fontSize: ".75rem" }}>
-          {formatCurrency(item.price)}
-        </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-semibold text-gray-800 truncate">{item.name.trim()}</p>
+        <p className="text-xs text-gray-400">{formatCurrency(item.price)}</p>
+        {quantity > 1 && (
+          <p className="text-xs text-gray-400">x{quantity}</p>
+        )}
       </div>
-      <div> {formatCurrency(item.price * quantity)}</div>
-      <Button
-        variant="outline-danger"
-        size="sm"
-        onClick={() => removeFromCart(item.id)}
-      >
-        &times;
-      </Button>
-    </Stack>
+      <div className="flex items-center gap-3">
+        <span className="text-sm font-bold text-gray-900">{formatCurrency(item.price * quantity)}</span>
+        <button
+          onClick={() => removeFromCart(id)}
+          className="w-6 h-6 flex items-center justify-center rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition text-lg leading-none"
+          aria-label="Entfernen"
+        >
+          ×
+        </button>
+      </div>
+    </div>
   );
 }
