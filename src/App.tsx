@@ -12,6 +12,8 @@ import ContactForm from "./Components/ContactForm";
 import Payment from "./Components/Payment";
 import { ThemeProvider } from "./context/ThemeContext";
 import AccountPage from "./Components/Account";
+import Impressum from "./pages/Impressum";
+import Datenschutz from "./pages/Datenschutz";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/checkoutform" element={<CheckoutForm />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact" element={<ContactForm />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
         </Routes>
       </ShoppingCartProvider>
     </ThemeProvider>
