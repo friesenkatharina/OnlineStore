@@ -1,91 +1,139 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
-import shopImage from "/BlatGruen.jpeg";
-import headerImage from "/MakraSymetrie.jpeg";
-import Slider from "../Components/Slider";
-import ImageModal from "../Components/ImageModal";
-import "../styles/index.css";
-// import Rating from "@mui/material/Rating";
-import Rating from "../Components/Rating";
+import storeItems from "../items.json";
 
-function Home(): React.JSX.Element {
+const FEATURED_IDS = [1, 2, 6, 8];
+const featured = storeItems.filter((item) => FEATURED_IDS.includes(item.id));
+
+const features = [
+  { icon: "🤝", title: "Handgefertigt", text: "Jedes Stück wird mit Sorgfalt von Hand geknüpft." },
+  { icon: "🌿", title: "Nachhaltig", text: "Natürliche Materialien, schonend für die Umwelt." },
+  { icon: "✨", title: "Unikate", text: "Kein Stück ist wie das andere — jedes ist einzigartig." },
+  { icon: "📦", title: "Schneller Versand", text: "Lieferung innerhalb von 3–5 Werktagen." },
+];
+
+export default function Home() {
   return (
-    <>
-      <Slider />
+    <div className="min-h-screen bg-white">
 
-      <header style={{ backgroundImage: "" }}></header>
-      <div>
-        <h1
-          style={{
-            fontFamily: "monospace",
-            textAlign: "center",
-            marginTop: "50px",
-          }}
-        >
-          Welcome to Creative Store for Makramee
-        </h1>
-        <Rating />
-      </div>
-      <div
+      {/* Hero */}
+      <section
+        className="relative flex items-center justify-center text-white"
         style={{
-          marginTop: "250px",
-          border: "5px solid grey",
-          padding: "20px",
-          backgroundColor: "#14532d",
+          backgroundImage: "url(/MakraSymetrie.jpeg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "520px",
         }}
-        className="  home-container"
       >
-        <div
-          style={{
-            marginTop: "50px",
-            border: "5px solid grey",
-            padding: "20px",
-          }}
-          className=" welcome-section"
-        >
-          <p
-            style={{
-              fontFamily: "revert-layer",
-              textAlign: "center",
-              color: "white",
-            }}
-            className=" welcome-text"
-          >
-            <br />
-            Herzlich Willkommen in unserem Makramee Online Shop!
-
-            Wir freuen uns, dass Sie den Weg zu uns gefunden haben. Hier erwarten Sie einzigartige, handgefertigte Makramee-Kreationen, die mit viel Liebe zum Detail und Sorgfalt hergestellt wurden. Jedes unserer Stücke erzählt seine eigene Geschichte und bringt einen Hauch von Boho-Chic in Ihr Zuhause oder in Ihren Alltag.
-            <br />
-            Unsere Leidenschaft für das traditionelle Handwerk spiegelt sich in jedem Knoten wider. Ob es sich um Wandbehänge, Pflanzenhänger, Schmuck oder andere Dekorationsartikel handelt – bei uns finden Sie stilvolle Unikate, die mit hochwertigen Materialien und einer Extraportion Herzblut gefertigt wurden.
-            <br />
-            Schauen Sie sich um und lassen Sie sich von unserer Auswahl inspirieren. Wir sind sicher, dass auch für Sie das perfekte Makramee-Stück dabei ist, das Ihrem Zuhause oder Ihrem Leben das gewisse Etwas verleiht.
-
-            Viel Spaß beim Stöbern und Einkaufen!
-
-
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 text-center px-4 max-w-2xl mx-auto">
+          <p className="text-sm uppercase tracking-widest mb-3 text-green-300 font-semibold">
+            Handgemachte Makramee-Kunst
           </p>
-        </div>
-
-        <header className=" shop-header">
-          <div style={{ marginTop: "100px", marginLeft: "50px" }}>
-            {" "}
-            <ImageModal src={shopImage} alt="Shop" />
-          </div>
-
-          <div
-            className="header-image-container"
-            style={{ position: "relative", left: "60%" }}
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+            Natürliche Schönheit für dein Zuhause
+          </h1>
+          <p className="text-lg text-white/80 mb-8">
+            Entdecke einzigartige, handgefertigte Makramee-Stücke mit Liebe zum Detail.
+          </p>
+          <Link
+            to="/store"
+            className="inline-block px-8 py-3 rounded-full font-semibold text-white transition-all hover:opacity-90"
+            style={{ backgroundColor: "#14532d" }}
           >
-            {" "}
-            <ImageModal src={headerImage} alt="Shop" />
-          </div>
-        </header>
+            Jetzt shoppen
+          </Link>
+        </div>
+      </section>
 
-        <div className="space-below" style={{ marginTop: "200px" }}></div>
-        <Footer />
-      </div>
-    </>
+      {/* Features */}
+      <section className="py-16 px-4 bg-stone-50">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {features.map((f) => (
+            <div key={f.title}>
+              <div className="text-4xl mb-3">{f.icon}</div>
+              <h3 className="font-bold text-gray-800 mb-1">{f.title}</h3>
+              <p className="text-sm text-gray-500">{f.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-16 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Beliebte Stücke</h2>
+            <Link
+              to="/store"
+              className="text-sm font-semibold hover:underline"
+              style={{ color: "#14532d" }}
+            >
+              Alle ansehen →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {featured.map((item) => (
+              <Link to="/store" key={item.id} className="group block">
+                <div className="overflow-hidden rounded-2xl bg-stone-100 aspect-square mb-3">
+                  <img
+                    src={item.imgUrl.trim()}
+                    alt={item.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <p className="font-semibold text-gray-800 text-sm">{item.name.trim()}</p>
+                <p className="text-sm" style={{ color: "#14532d" }}>
+                  {item.price.toFixed(2).replace(".", ",")} €
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Banner */}
+      <section className="py-16 px-4" style={{ backgroundColor: "#14532d" }}>
+        <div className="max-w-3xl mx-auto text-center text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Über unsere Handwerkskunst</h2>
+          <p className="text-white/80 leading-relaxed mb-8">
+            Herzlich Willkommen in unserem Makramee Online Shop! Jedes unserer Stücke
+            wird mit viel Liebe zum Detail handgefertigt — aus hochwertigen, natürlichen
+            Materialien. Boho-Chic trifft auf zeitloses Handwerk.
+          </p>
+          <Link
+            to="/about"
+            className="inline-block px-7 py-3 rounded-full border border-white text-white font-semibold hover:bg-white hover:text-green-900 transition-all"
+          >
+            Mehr erfahren
+          </Link>
+        </div>
+      </section>
+
+      {/* Image Grid */}
+      <section className="py-16 px-4 bg-stone-50">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">
+            Inspirationen
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {["/BlatGruen.jpeg", "/weddingMakra.jpeg", "/sparkleNight.jpeg",
+              "/FlowerRegal.jpeg", "/WandbehangStar.jpeg", "/BluetenEleganz.jpeg"].map((src, i) => (
+              <div key={i} className="overflow-hidden rounded-2xl aspect-square bg-stone-200">
+                <img
+                  src={src}
+                  alt={`Inspiration ${i + 1}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
   );
 }
-
-export default Home;

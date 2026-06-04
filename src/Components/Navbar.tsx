@@ -1,113 +1,101 @@
-import React, { useEffect } from "react";
-import { Container, Nav, Navbar as NavbarBs, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-// import { useTheme } from "../context/ThemeContext";
-import "../styles/index.css";
-import Image from "/makrameeLogo.png";
+import logo from "/makrameeLogo.png";
 
 export function Navbar() {
+  const [isAuth, setIsAuth] = useState<boolean | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  // const { theme, toggleTheme } = useTheme();
+  useEffect(() => {
+    fetch("/api/users/me", { credentials: "include" })
+      .then((res) => setIsAuth(res.ok))
+      .catch(() => setIsAuth(false));
+  }, []);
 
-  const isUserSignedIn = !!localStorage.getItem("token");
-
-  // Function for logout
-  const handleSignOut = () => {
-    alert("Du wurdest ausgeloggt. (Timeout)");
-    localStorage.removeItem("token");
+  const handleSignOut = async () => {
+    await fetch("/api/users/logout", { method: "POST", credentials: "include" });
+    setIsAuth(false);
     navigate("/login");
-    window.location.reload();
   };
 
-  // Timer for auto logout
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    const handleActivity = () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        if (isUserSignedIn) {
-          handleSignOut();
-        }
-      }, 1000000); // 1000000 milliseconds = 16 minutes and 40 seconds
-    };
-    document.addEventListener("mousemove", handleActivity);
-    document.addEventListener("mousedown", handleActivity);
-    document.addEventListener("keypress", handleActivity);
-    document.addEventListener("touchmove", handleActivity);
-    document.addEventListener("scroll", handleActivity);
-
-    return () => {
-      clearTimeout(timer);
-      document.removeEventListener("mousemove", handleActivity);
-      document.removeEventListener("mousedown", handleActivity);
-      document.removeEventListener("keypress", handleActivity);
-      document.removeEventListener("touchmove", handleActivity);
-      document.removeEventListener("scroll", handleActivity);
-    };
-  }, [isUserSignedIn, handleSignOut]);
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    `text-sm font-medium transition-colors hover:text-green-300 ${isActive ? "text-green-300" : "text-white/80"}`;
 
   return (
-    <NavbarBs
-      sticky="top"
-      className="shadow-sm mb-4"
-      style={{
-        backgroundColor: "#14532d",
-        opacity: "0.9",
-        height: "100px",
-        fontSize: "20px",
-      }}
+    <nav
+      className="sticky top-0 z-50 shadow-md"
+      style={{ backgroundColor: "#14532d" }}
     >
-      <Container>
-        <img
-          src={Image}
-          alt="Logo"
-          style={{
-            width: "50px",
-            position: "absolute",
-            left: "5%",
-            top: "70%",
-          }}
-        />
-        <Nav className="me-auto">
-          <Nav.Link as={NavLink} to="/" style={{ color: "#a3e635" }}>
-            Home
-          </Nav.Link>
-          <Nav.Link as={NavLink} to="/store" style={{ color: "#a3e635" }}>
-            Store
-          </Nav.Link>
-          <Nav.Link as={NavLink} to="/about" style={{ color: "#a3e635" }}>
-            About
-          </Nav.Link>
+      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
 
-          {isUserSignedIn ? (
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center gap-2">
+          <img src={logo} alt="Logo" className="h-9 w-9 object-contain" />
+          <span className="text-white font-bold text-base hidden sm:block">
+            Makramee Store
+          </span>
+        </NavLink>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-7">
+          <NavLink to="/" className={linkClass}>Home</NavLink>
+          <NavLink to="/store" className={linkClass}>Store</NavLink>
+          <NavLink to="/about" className={linkClass}>Über uns</NavLink>
+          {isAuth ? (
             <>
-              <Nav.Link as={NavLink} to="/account" style={{ color: "#a3e635" }}>
-                Account
-              </Nav.Link>
-              <Button
-                variant="outline-success"
+              <NavLink to="/account" className={linkClass}>Account</NavLink>
+              <button
                 onClick={handleSignOut}
-                style={{ marginLeft: "0.5rem", color: "#a3e635" }}
+                className="text-sm font-medium px-4 py-1.5 rounded-full border border-white/40 text-white hover:bg-white/10 transition"
               >
-                Sign Out
-              </Button>
+                Abmelden
+              </button>
             </>
           ) : (
-            <Nav.Link as={NavLink} to="/signup" style={{ color: "#a3e635" }}>
-              Signup
-            </Nav.Link>
+            <>
+              <NavLink to="/login" className={linkClass}>Login</NavLink>
+              <NavLink
+                to="/signup"
+                className="text-sm font-semibold px-4 py-1.5 rounded-full bg-white text-green-900 hover:bg-green-100 transition"
+              >
+                Registrieren
+              </NavLink>
+            </>
           )}
+        </div>
 
-          {/* <Button
-            variant="outline-success"
-            onClick={toggleTheme}
-            style={{ marginLeft: "0.5rem", height: "40px", width: "40px" }}
-          >
-            {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
-          </Button> */}
-        </Nav>
-      </Container>
-    </NavbarBs>
+        {/* Mobile Burger */}
+        <button
+          className="md:hidden text-white p-2"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menü öffnen"
+        >
+          <div className={`w-5 h-0.5 bg-white mb-1 transition-all ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+          <div className={`w-5 h-0.5 bg-white mb-1 transition-all ${menuOpen ? "opacity-0" : ""}`} />
+          <div className={`w-5 h-0.5 bg-white transition-all ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden px-4 pb-4 flex flex-col gap-3" style={{ backgroundColor: "#14532d" }}>
+          <NavLink to="/" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Home</NavLink>
+          <NavLink to="/store" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Store</NavLink>
+          <NavLink to="/about" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Über uns</NavLink>
+          {isAuth ? (
+            <>
+              <NavLink to="/account" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Account</NavLink>
+              <button onClick={handleSignOut} className="text-white/80 text-sm text-left">Abmelden</button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Login</NavLink>
+              <NavLink to="/signup" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Registrieren</NavLink>
+            </>
+          )}
+        </div>
+      )}
+    </nav>
   );
 }

@@ -1,67 +1,52 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Col, Row, Button } from "react-bootstrap";
 import { StoreItem } from "../Components/StoreItem";
 import storeItems from "../items.json";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 export function Store() {
-  const [userName, setUserName] = useState("");
-  const [isUserSignedIn, setIsUserSignedIn] = useState(false); // Zustandsvariable für den Anmeldestatus
-  const navigate = useNavigate();
+  const [user, setUser] = useState<{ username: string } | null>(null);
   const { openCart, cartQuantity } = useShoppingCart();
 
   useEffect(() => {
-    const storedUserName = localStorage.getItem("userName");
-    if (storedUserName) {
-      setUserName(storedUserName);
-      setIsUserSignedIn(true); //  true, wenn ein Benutzername gespeichert ist
-    } else {
-      setIsUserSignedIn(false); //  false, wenn kein Benutzername gespeichert ist
-    }
+    fetch("/api/users/me", { credentials: "include" })
+      .then((res) => res.ok ? res.json() : null)
+      .then((data) => data && setUser(data.user))
+      .catch(() => null);
   }, []);
 
   return (
-    <>
-      {userName && <h1>Welcome, {userName}!</h1>}
-      {isUserSignedIn && cartQuantity > 0 && (
-        <Button
-          onClick={openCart}
-          variant="outline-success"
-          style={{
-            position: "relative",
-            left: "80%",
-            width: "3rem",
-            height: "3rem",
-          }}
-          className="rounded-circle"
-        >
-          <FontAwesomeIcon icon={faShoppingCart} style={{ color: "#63E6BE" }} />
-          <div
-            className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
-            style={{
-              color: "white",
-              width: "1.5rem",
-              height: "1.5rem",
-              position: "absolute",
-              bottom: 0,
-              right: 0,
-              transform: "translate(25%, 25%)",
-            }}
+    <div className="max-w-6xl mx-auto px-4 py-10">
+
+      {/* Header */}
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+            {user ? `Willkommen, ${user.username}!` : "Unser Shop"}
+          </h1>
+          <p className="text-gray-500 text-sm mt-1">
+            {storeItems.length} handgefertigte Stücke
+          </p>
+        </div>
+        {cartQuantity > 0 && (
+          <button
+            onClick={openCart}
+            className="relative flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-semibold text-sm shadow hover:opacity-90 transition"
+            style={{ backgroundColor: "#14532d" }}
           >
-            {cartQuantity}
-          </div>
-        </Button>
-      )}
-      <Row md={2} xs={1} lg={2} className="g-3" style={{ marginTop: "50px" }}>
+            🛒 Warenkorb
+            <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+              {cartQuantity}
+            </span>
+          </button>
+        )}
+      </div>
+
+      {/* Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
         {storeItems.map((item) => (
-          <Col key={item.id}>
-            <StoreItem {...item} />
-          </Col>
+          <StoreItem key={item.id} {...item} />
         ))}
-      </Row>
-    </>
+      </div>
+    </div>
   );
 }
