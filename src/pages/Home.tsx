@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import storeItems from "../items.json";
 
-const FEATURED_IDS = [1, 2, 6, 8];
+const FEATURED_IDS = [1, 4, 7, 8];
 const featured = storeItems.filter((item) => FEATURED_IDS.includes(item.id));
+const exclusiveItems = storeItems.filter((item) => item.exclusive);
 
 const features = [
   { icon: "🤝", title: "Handgefertigt", text: "Jedes Stück wird mit Sorgfalt von Hand geknüpft." },
@@ -14,6 +15,14 @@ const features = [
 ];
 
 export default function Home() {
+  const [isAuth, setIsAuth] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    fetch("/api/users/me", { credentials: "include" })
+      .then((res) => setIsAuth(res.ok))
+      .catch(() => setIsAuth(false));
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
 
@@ -24,108 +33,185 @@ export default function Home() {
           backgroundImage: "url(/MakraSymetrie.jpeg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "520px",
+          minHeight: "600px",
         }}
       >
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-center px-4 max-w-2xl mx-auto">
-          <p className="text-sm uppercase tracking-widest mb-3 text-green-300 font-semibold">
+          <p className="text-xs uppercase tracking-[0.3em] mb-4 text-green-300 font-semibold">
             Handgemachte Makramee-Kunst
           </p>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 uppercase tracking-tight">
             Natürliche Schönheit für dein Zuhause
           </h1>
-          <p className="text-lg text-white/80 mb-8">
+          <p className="text-base text-white/80 mb-8">
             Entdecke einzigartige, handgefertigte Makramee-Stücke mit Liebe zum Detail.
           </p>
-          <Link
-            to="/store"
-            className="inline-block px-8 py-3 rounded-full font-semibold text-white transition-all hover:opacity-90"
-            style={{ backgroundColor: "#14532d" }}
-          >
-            Jetzt shoppen
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/store"
+              className="px-8 py-3 bg-white text-black text-sm font-bold uppercase tracking-widest hover:bg-stone-100 transition"
+            >
+              Kollektion entdecken
+            </Link>
+            {!isAuth && (
+              <Link
+                to="/signup"
+                className="px-8 py-3 border border-white text-white text-sm font-bold uppercase tracking-widest hover:bg-white/10 transition"
+              >
+                Member werden
+              </Link>
+            )}
+          </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-16 px-4 bg-stone-50">
+      <section className="py-14 px-4 bg-stone-50 border-y border-stone-100">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {features.map((f) => (
             <div key={f.title}>
-              <div className="text-4xl mb-3">{f.icon}</div>
-              <h3 className="font-bold text-gray-800 mb-1">{f.title}</h3>
-              <p className="text-sm text-gray-500">{f.text}</p>
+              <div className="text-3xl mb-3">{f.icon}</div>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-900 mb-1">{f.title}</h3>
+              <p className="text-xs text-gray-500 leading-relaxed">{f.text}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* Neue Kollektion */}
       <section className="py-16 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Beliebte Stücke</h2>
-            <Link
-              to="/store"
-              className="text-sm font-semibold hover:underline"
-              style={{ color: "#14532d" }}
-            >
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Neu eingetroffen</p>
+              <h2 className="text-2xl font-black uppercase tracking-tight text-gray-900">Beliebte Stücke</h2>
+            </div>
+            <Link to="/store" className="text-xs font-bold uppercase tracking-widest text-gray-900 hover:underline">
               Alle ansehen →
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {featured.map((item) => (
               <Link to="/store" key={item.id} className="group block">
-                <div className="overflow-hidden rounded-2xl bg-stone-100 aspect-square mb-3">
+                <div className="relative overflow-hidden bg-stone-100 aspect-[3/4] mb-3">
                   <img
                     src={item.imgUrl.trim()}
                     alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  {item.isNew && (
+                    <span className="absolute top-3 left-3 text-[10px] font-bold px-2 py-0.5 bg-white text-black border border-black uppercase tracking-wider">
+                      Neu
+                    </span>
+                  )}
                 </div>
-                <p className="font-semibold text-gray-800 text-sm">{item.name.trim()}</p>
-                <p className="text-sm" style={{ color: "#14532d" }}>
-                  {item.price.toFixed(2).replace(".", ",")} €
-                </p>
+                <p className="text-xs font-bold text-gray-900 uppercase tracking-wide">{item.name}</p>
+                <p className="text-xs text-gray-400 mt-0.5">{(item as any).subtitle}</p>
+                <p className="text-sm font-semibold text-gray-900 mt-1">{item.price.toFixed(2).replace(".", ",")} €</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* About Banner */}
-      <section className="py-16 px-4" style={{ backgroundColor: "#14532d" }}>
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Über unsere Handwerkskunst</h2>
-          <p className="text-white/80 leading-relaxed mb-8">
-            Herzlich Willkommen in unserem Makramee Online Shop! Jedes unserer Stücke
-            wird mit viel Liebe zum Detail handgefertigt — aus hochwertigen, natürlichen
-            Materialien. Boho-Chic trifft auf zeitloses Handwerk.
-          </p>
-          <Link
-            to="/about"
-            className="inline-block px-7 py-3 rounded-full border border-white text-white font-semibold hover:bg-white hover:text-green-900 transition-all"
-          >
-            Mehr erfahren
-          </Link>
+      {/* Member Exclusive Section */}
+      <section className="py-16 px-4 bg-stone-900 text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-green-400 mb-2 block">
+                Member Exclusive
+              </span>
+              <h2 className="text-2xl font-black uppercase tracking-tight">
+                Nur für unsere Members
+              </h2>
+              <p className="text-white/50 text-sm mt-2 max-w-md">
+                Als Member erhältst du Zugang zu exklusiven Stücken, die nicht öffentlich erhältlich sind.
+              </p>
+            </div>
+            {!isAuth ? (
+              <div className="flex gap-3 flex-shrink-0">
+                <Link
+                  to="/signup"
+                  className="px-6 py-3 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-stone-100 transition"
+                >
+                  Kostenlos registrieren
+                </Link>
+                <Link
+                  to="/login"
+                  className="px-6 py-3 border border-white/30 text-white text-xs font-bold uppercase tracking-widest hover:border-white transition"
+                >
+                  Anmelden
+                </Link>
+              </div>
+            ) : (
+              <Link
+                to="/store?filter=exclusive"
+                className="px-6 py-3 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-stone-100 transition flex-shrink-0"
+              >
+                Alle ansehen →
+              </Link>
+            )}
+          </div>
+
+          {/* Produkt Grid — unscharf wenn nicht eingeloggt */}
+          <div className="relative">
+            <div className={`grid grid-cols-2 md:grid-cols-4 gap-5 ${!isAuth ? "blur-sm pointer-events-none select-none" : ""}`}>
+              {exclusiveItems.slice(0, 4).map((item) => (
+                <div key={item.id} className="group">
+                  <div className="relative overflow-hidden bg-stone-800 aspect-[3/4] mb-3">
+                    <img
+                      src={item.imgUrl.trim()}
+                      alt={item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-3 left-3 text-[10px] font-bold px-2 py-0.5 bg-white text-black uppercase tracking-wider">
+                      Member Exclusive
+                    </span>
+                  </div>
+                  <p className="text-xs font-bold text-white uppercase tracking-wide">{item.name}</p>
+                  <p className="text-xs text-white/40 mt-0.5">{(item as any).subtitle}</p>
+                  <p className="text-sm font-semibold text-white mt-1">{item.price.toFixed(2).replace(".", ",")} €</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Overlay wenn nicht eingeloggt */}
+            {!isAuth && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center bg-stone-900/90 px-8 py-6 border border-white/10">
+                  <div className="text-2xl mb-3">🔒</div>
+                  <p className="text-sm font-bold text-white mb-1">Exklusiv für Members</p>
+                  <p className="text-xs text-white/50 mb-4">Registriere dich kostenlos um Zugang zu erhalten</p>
+                  <Link
+                    to="/signup"
+                    className="inline-block px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-stone-100 transition"
+                  >
+                    Jetzt Member werden
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
-      {/* Image Grid */}
-      <section className="py-16 px-4 bg-stone-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">
-            Inspirationen
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {/* Inspirationen */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Galerie</p>
+            <h2 className="text-2xl font-black uppercase tracking-tight text-gray-900">Inspirationen</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {["/BlatGruen.jpeg", "/weddingMakra.jpeg", "/sparkleNight.jpeg",
               "/FlowerRegal.jpeg", "/WandbehangStar.jpeg", "/BluetenEleganz.jpeg"].map((src, i) => (
-              <div key={i} className="overflow-hidden rounded-2xl aspect-square bg-stone-200">
+              <div key={i} className="overflow-hidden aspect-square bg-stone-100">
                 <img
                   src={src}
                   alt={`Inspiration ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
             ))}
