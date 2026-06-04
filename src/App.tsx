@@ -11,6 +11,7 @@ import CheckoutForm from "./Components/Checkouform";
 import ContactForm from "./Components/ContactForm";
 import Payment from "./Components/Payment";
 import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
 import AccountPage from "./Components/Account";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
@@ -19,6 +20,7 @@ import FloatingSidebar from "./Components/FloatingSidebar";
 function App() {
   return (
     <ThemeProvider>
+      <AuthProvider>
       <ShoppingCartProvider>
         <Navbar />
         <FloatingSidebar />
@@ -43,6 +45,7 @@ function App() {
           <Route path="/datenschutz" element={<Datenschutz />} />
         </Routes>
       </ShoppingCartProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

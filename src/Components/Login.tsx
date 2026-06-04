@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -7,6 +8,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { refresh } = useAuth();
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -43,6 +45,7 @@ const Login: React.FC = () => {
       });
       const data = await response.json();
       if (!response.ok) { setError(data.message || "Login fehlgeschlagen."); return; }
+      refresh();
       navigate("/store");
     } catch {
       setError("Verbindungsfehler. Bitte versuche es erneut.");

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const { user, loading } = useAuth();
 
-  useEffect(() => {
-    fetch("/api/users/me", { credentials: "include" })
-      .then((res) => setIsAuthenticated(res.ok))
-      .catch(() => setIsAuthenticated(false));
-  }, []);
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="w-8 h-8 border-4 border-green-700 border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
 
-  if (isAuthenticated === null) return null;
-  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  if (!user) return <Navigate to="/login" replace />;
   return children;
 };
 

@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "/makrameeLogo.png";
+import { useAuth } from "../context/AuthContext";
 
 export function Navbar() {
-  const [isAuth, setIsAuth] = useState<boolean | null>(null);
+  const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("/api/users/me", { credentials: "include" })
-      .then((res) => setIsAuth(res.ok))
-      .catch(() => setIsAuth(false));
-  }, []);
-
   const handleSignOut = async () => {
-    await fetch("/api/users/logout", { method: "POST", credentials: "include" });
-    setIsAuth(false);
+    await logout();
     navigate("/login");
   };
 
@@ -23,26 +17,19 @@ export function Navbar() {
     `text-sm font-medium transition-colors hover:text-green-300 ${isActive ? "text-green-300" : "text-white/80"}`;
 
   return (
-    <nav
-      className="sticky top-0 z-50 shadow-md"
-      style={{ backgroundColor: "#14532d" }}
-    >
+    <nav className="sticky top-0 z-50 shadow-md" style={{ backgroundColor: "#14532d" }}>
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
 
-        {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2">
           <img src={logo} alt="Logo" className="h-9 w-9 object-contain" />
-          <span className="text-white font-bold text-base hidden sm:block">
-            Makramee Store
-          </span>
+          <span className="text-white font-bold text-base hidden sm:block">Makramee Store</span>
         </NavLink>
 
-        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-7">
           <NavLink to="/" className={linkClass}>Home</NavLink>
           <NavLink to="/store" className={linkClass}>Store</NavLink>
           <NavLink to="/about" className={linkClass}>Über uns</NavLink>
-          {isAuth ? (
+          {user ? (
             <>
               <NavLink to="/account" className={linkClass}>Account</NavLink>
               <button
@@ -65,7 +52,6 @@ export function Navbar() {
           )}
         </div>
 
-        {/* Mobile Burger */}
         <button
           className="md:hidden text-white p-2"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -77,13 +63,12 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 flex flex-col gap-3" style={{ backgroundColor: "#14532d" }}>
           <NavLink to="/" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Home</NavLink>
           <NavLink to="/store" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Store</NavLink>
           <NavLink to="/about" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Über uns</NavLink>
-          {isAuth ? (
+          {user ? (
             <>
               <NavLink to="/account" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Account</NavLink>
               <button onClick={handleSignOut} className="text-white/80 text-sm text-left">Abmelden</button>
