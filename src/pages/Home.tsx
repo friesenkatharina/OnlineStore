@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
+import TeamSection from "../Components/TeamSection";
 import storeItems from "../items.json";
 
 const FEATURED_IDS = [1, 4, 7, 8];
@@ -80,8 +81,17 @@ export default function Home() {
       </section>
 
       {/* Neue Kollektion */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section
+        className="py-16 px-4 relative"
+        style={{
+          backgroundImage: "url(/Muster.jpg)",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-white/75" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex items-end justify-between mb-8">
             <div>
               <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Neu eingetroffen</p>
@@ -197,27 +207,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Inspirationen */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Galerie</p>
-            <h2 className="text-2xl font-black uppercase tracking-tight text-gray-900">Inspirationen</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {["/BlatGruen.jpeg", "/weddingMakra.jpeg", "/sparkleNight.jpeg",
-              "/FlowerRegal.jpeg", "/WandbehangStar.jpeg", "/BluetenEleganz.jpeg"].map((src, i) => (
-              <div key={i} className="overflow-hidden aspect-square bg-stone-100">
-                <img
-                  src={src}
-                  alt={`Inspiration ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TeamSection />
 
       <Footer />
     </div>

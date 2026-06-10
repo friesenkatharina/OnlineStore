@@ -3,6 +3,7 @@ import { useState } from "react";
 const team = [
   {
     initials: "LA",
+    avatar: "/lena-avatar.png",
     name: "Lena Artig",
     role: "Gründerin & Designerin",
     bio: "Lena begann mit Makramee in ihrer kleinen Küche – heute kreiert sie Unikate, die in ganz Europa verkauft werden. Jedes Stück trägt ihre Handschrift.",
@@ -12,6 +13,7 @@ const team = [
   },
   {
     initials: "MM",
+    avatar: "/mia_avatar.png",
     name: "Mia Müller",
     role: "Kreativleiterin",
     bio: "Mia bringt frische Farben und moderne Muster ins Sortiment. Ihre Boho-Kollektion war innerhalb von 48 Stunden ausverkauft.",
@@ -21,6 +23,8 @@ const team = [
   },
   {
     initials: "SK",
+    avatar: "/sara-avatar.png",
+    avatarPosition: "object-top",
     name: "Sara Klein",
     role: "Kundenservice",
     bio: "Sara sorgt dafür, dass jede Bestellung mit Liebe verpackt wird. Ihre persönlichen Nachrichten im Paket machen den Unterschied.",
@@ -30,6 +34,7 @@ const team = [
   },
   {
     initials: "JB",
+    avatar: "/jana-avatar.png",
     name: "Jana Braun",
     role: "Textilkuratorin",
     bio: "Jana wählt ausschließlich nachhaltige Materialien – natürliche Baumwolle, recycelte Fasern. Schönheit soll keine Kompromisse brauchen.",
@@ -87,10 +92,12 @@ export default function TeamSection() {
               <div className="relative flex items-center gap-4 mb-4">
                 {/* Avatar */}
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-md shrink-0"
+                  className="w-14 h-14 rounded-2xl overflow-hidden shadow-md shrink-0 flex items-center justify-center text-white font-black text-sm"
                   style={{ backgroundColor: member.color }}
                 >
-                  {member.initials}
+                  {member.avatar
+                    ? <img src={member.avatar} alt={member.name} className={`w-full h-full object-cover ${"avatarPosition" in member ? member.avatarPosition : "object-center"}`} />
+                    : member.initials}
                 </div>
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
