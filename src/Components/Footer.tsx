@@ -57,6 +57,12 @@ export default function Footer() {
               katharina_f1@icloud.com
             </a>
           </div>
+          <div className="mt-6">
+            <h4 className="font-bold mb-2 text-white/90 text-xs uppercase tracking-widest">Tools</h4>
+            <NavLink to="/qrcode" className="text-xs text-white/60 hover:text-white transition flex items-center gap-1.5">
+              <span>⬛</span> QR-Code Generator
+            </NavLink>
+          </div>
         </div>
       </div>
 
