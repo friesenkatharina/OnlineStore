@@ -15,6 +15,7 @@ import { AuthProvider } from "./context/AuthContext";
 import AccountPage from "./Components/Account";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import QRCodePage from "./pages/QRCodePage";
 import FloatingSidebar from "./Components/FloatingSidebar";
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/qrcode" element={<QRCodePage />} />
         </Routes>
       </ShoppingCartProvider>
       </AuthProvider>
