@@ -29,6 +29,7 @@ export function Navbar() {
           <NavLink to="/" className={linkClass}>Home</NavLink>
           <NavLink to="/store" className={linkClass}>Store</NavLink>
           <NavLink to="/about" className={linkClass}>Über uns</NavLink>
+          <NavLink to="/faq" className={linkClass}>FAQ</NavLink>
           {user ? (
             <>
               <NavLink to="/account" className={linkClass}>Account</NavLink>
@@ -68,6 +69,7 @@ export function Navbar() {
           <NavLink to="/" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Home</NavLink>
           <NavLink to="/store" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Store</NavLink>
           <NavLink to="/about" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Über uns</NavLink>
+          <NavLink to="/faq" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>FAQ</NavLink>
           {user ? (
             <>
               <NavLink to="/account" className="text-white/80 text-sm" onClick={() => setMenuOpen(false)}>Account</NavLink>
