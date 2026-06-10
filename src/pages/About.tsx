@@ -16,7 +16,7 @@ export default function About() {
       <Helmet>
         <title>Über uns — Das Team hinter dem Makramee Store</title>
         <meta name="description" content="Lerne das Team hinter dem Makramee Store kennen. Vier leidenschaftliche Handwerkerinnen, die Makramee-Kunst mit Liebe und nachhaltigen Materialien erschaffen." />
-        <link rel="canonical" href="https://makramee-store.vercel.app/about" />
+        <link rel="canonical" href="https://shop-webdevelopment.katharina-friesen.com/about" />
       </Helmet>
 
       {/* Hero */}

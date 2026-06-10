@@ -98,7 +98,7 @@ export default function FAQ() {
       <Helmet>
         <title>FAQ — Häufige Fragen zum Makramee Store</title>
         <meta name="description" content="Antworten auf häufige Fragen zu Bestellung, Versand, Materialien, Rückgabe und individuellen Anfragen im Makramee Store." />
-        <link rel="canonical" href="https://makramee-store.vercel.app/faq" />
+        <link rel="canonical" href="https://shop-webdevelopment.katharina-friesen.com/faq" />
       </Helmet>
 
       {/* Hero */}

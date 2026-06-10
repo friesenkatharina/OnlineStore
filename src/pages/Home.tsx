@@ -30,7 +30,7 @@ export default function Home() {
       <Helmet>
         <title>Makramee Store — Handgefertigte Makramee-Kunst kaufen</title>
         <meta name="description" content="Entdecke handgefertigte Makramee-Produkte aus 100 % natürlicher Baumwolle. Wanddekos, Blumenampeln, Tischläufer und mehr — jedes Stück ein Unikat." />
-        <link rel="canonical" href="https://makramee-store.vercel.app/" />
+        <link rel="canonical" href="https://shop-webdevelopment.katharina-friesen.com/" />
       </Helmet>
 
       {/* Hero */}

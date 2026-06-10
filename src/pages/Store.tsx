@@ -28,7 +28,7 @@ export function Store() {
       <Helmet>
         <title>Shop — Makramee Produkte online kaufen</title>
         <meta name="description" content="Alle Makramee-Produkte auf einen Blick: Wanddekos, Blumenampeln, Tischläufer und exklusive Stücke. Handgemacht aus natürlicher Baumwolle." />
-        <link rel="canonical" href="https://makramee-store.vercel.app/store" />
+        <link rel="canonical" href="https://shop-webdevelopment.katharina-friesen.com/store" />
       </Helmet>
 
       {/* Store Header */}
