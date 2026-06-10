@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import Home from "./pages/Home";
 import { Store } from "./pages/Store";
 import About from "./pages/About";
@@ -21,6 +22,7 @@ import FloatingSidebar from "./Components/FloatingSidebar";
 
 function App() {
   return (
+    <HelmetProvider>
     <ThemeProvider>
       <AuthProvider>
       <ShoppingCartProvider>
@@ -51,6 +53,7 @@ function App() {
       </ShoppingCartProvider>
       </AuthProvider>
     </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

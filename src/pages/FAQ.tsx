@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 type FAQItem = { question: string; answer: string };
 
@@ -94,6 +95,11 @@ export default function FAQ() {
 
   return (
     <div className="min-h-screen bg-stone-50">
+      <Helmet>
+        <title>FAQ — Häufige Fragen zum Makramee Store</title>
+        <meta name="description" content="Antworten auf häufige Fragen zu Bestellung, Versand, Materialien, Rückgabe und individuellen Anfragen im Makramee Store." />
+        <link rel="canonical" href="https://makramee-store.vercel.app/faq" />
+      </Helmet>
 
       {/* Hero */}
       <div className="bg-[#14532d] text-white py-14 px-4 text-center">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Footer from "../Components/Footer";
 import TeamSection from "../Components/TeamSection";
 import storeItems from "../items.json";
@@ -26,6 +27,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>Makramee Store — Handgefertigte Makramee-Kunst kaufen</title>
+        <meta name="description" content="Entdecke handgefertigte Makramee-Produkte aus 100 % natürlicher Baumwolle. Wanddekos, Blumenampeln, Tischläufer und mehr — jedes Stück ein Unikat." />
+        <link rel="canonical" href="https://makramee-store.vercel.app/" />
+      </Helmet>
 
       {/* Hero */}
       <section

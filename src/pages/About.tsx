@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import ContactForm from "../Components/ContactForm";
 import TeamSection from "../Components/TeamSection";
 
@@ -12,6 +13,11 @@ const values = [
 export default function About() {
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>Über uns — Das Team hinter dem Makramee Store</title>
+        <meta name="description" content="Lerne das Team hinter dem Makramee Store kennen. Vier leidenschaftliche Handwerkerinnen, die Makramee-Kunst mit Liebe und nachhaltigen Materialien erschaffen." />
+        <link rel="canonical" href="https://makramee-store.vercel.app/about" />
+      </Helmet>
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#faf8f5] px-4 pt-20 pb-24">

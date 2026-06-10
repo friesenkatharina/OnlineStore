@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://makramee-store.vercel.app/sitemap.xml

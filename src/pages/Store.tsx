@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { StoreItem } from "../Components/StoreItem";
 import storeItems from "../items.json";
 import { useShoppingCart } from "../context/ShoppingCartContext";
@@ -24,6 +25,11 @@ export function Store() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>Shop — Makramee Produkte online kaufen</title>
+        <meta name="description" content="Alle Makramee-Produkte auf einen Blick: Wanddekos, Blumenampeln, Tischläufer und exklusive Stücke. Handgemacht aus natürlicher Baumwolle." />
+        <link rel="canonical" href="https://makramee-store.vercel.app/store" />
+      </Helmet>
 
       {/* Store Header */}
       <div className="border-b border-stone-100 py-10 px-4 text-center">
